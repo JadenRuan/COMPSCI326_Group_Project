@@ -1,4 +1,4 @@
-# COMPSCi326_Group_Project
+# COMPSCI326_Group_Project
 
 Project Title & Team Number (copied/revised from your presentation slides).
 Project Description (copied/revised from your presentation slides).:
