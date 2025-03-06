@@ -1,6 +1,8 @@
-# COMPSCI326_Group_Project
+# COMPSCI326 Group Project
 
-Project Title & Team Number (copied/revised from your presentation slides).
+Project Title: Farmer’s Market Map
+Team Number: Team 24
+
 Project Description (copied/revised from your presentation slides).:
 Problem: Clearly define the problem your application aims to solve.
 Solution: Describe how your application addresses the problem.
