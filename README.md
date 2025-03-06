@@ -1,7 +1,10 @@
 # COMPSCI326 Group Project
 
 Project Title: Farmer’s Market Map
+
 Team Number: Team 24
+
+Problem Description: There is not a lot of information available about student vendors at the UMass Students farmers market. 
 
 Project Description (copied/revised from your presentation slides).:
 Problem: Clearly define the problem your application aims to solve.
