@@ -14,11 +14,7 @@ Key Features:
 - Reviews section to comment on different vendors and their products. This will allow vendors to get feedback and see which products did well versus ones that did not as well and be able to restock accordingly.
 - Homepage for visitors to browse vendors and their products. This will allow visitors to see a catalog of vendors and explore any they are interested in.
 
-Project Description (copied/revised from your presentation slides).:
-Problem: Clearly define the problem your application aims to solve.
-Solution: Describe how your application addresses the problem.
-Key Features: Outline essential functionalities of your application.
-Why This Project? Explain the real-world impact and user pain points.
+Why This Project? Explain the real-world impact and user pain points. We decided to do this project as previous attendees of the farmer market, there's not much info aside from that it is happening at this time. While it is fun to browse all the different vendors it would be much more efficient if you could browse the products online.
 
 Team Member List:
 
