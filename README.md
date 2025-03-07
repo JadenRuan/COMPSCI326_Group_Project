@@ -24,7 +24,7 @@ Team Member List:
 
 - Name: Advaya Venbakkam
   - Role: Timekeeper
-  - The three issues I plan to work on:
+  - The three issues I plan to work on: Product page UI design, data for the product page, vendor page UI
     
 - Name: Jaden Ruan
   - Role: Project Manager
