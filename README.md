@@ -29,4 +29,6 @@ Team Member List:
 - Name: Advaya Venbakkam
   - Role: Timekeeper
   - The three issues I plan to work on:
-
+- Name: Jaden Ruan
+  - Role: Project Manager
+  - The three issues I plan to work on:
