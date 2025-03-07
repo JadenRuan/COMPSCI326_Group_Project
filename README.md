@@ -20,7 +20,7 @@ Team Member List:
 
 - Name: Gianna Leidich
   - Role: Notetaker
-  - The three issues I plan to work on:
+  - The three issues I plan to work on: Home page UI design, vendor UI design, user data design, 
 
 
 - Name: Advaya Venbakkam
