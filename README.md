@@ -22,8 +22,8 @@ Why This Project? Explain the real-world impact and user pain points.
 Team Member List:
 
 - Name: Gianna Leidich
-- Role: Notetaker
-- The three issues I plan to work on:
+  - Role: Notetaker
+  - The three issues I plan to work on:
 
 
 - Name: Advaya Venbakkam
