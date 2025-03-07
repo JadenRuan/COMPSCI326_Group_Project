@@ -27,6 +27,6 @@ Team Member List:
 
 
 - Name: Advaya Venbakkam
-- Role: Timekeeper
-- The three issues I plan to work on:
+  - Role: Timekeeper
+  - The three issues I plan to work on:
 
