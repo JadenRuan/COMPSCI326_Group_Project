@@ -29,3 +29,7 @@ Team Member List:
 - Name: Jaden Ruan
   - Role: Project Manager
   - The three issues I plan to work on:
+ 
+- Name: Samuel Rodriguez
+  - Role: Note Taker
+  - The three issues I plan to work on: Authentication (Username/Password token based), Account management UI, data storage for users
