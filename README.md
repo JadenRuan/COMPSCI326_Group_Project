@@ -10,7 +10,8 @@ Solution: We want to create a platform that contains relevant information about 
 
 
 Key Features:
-- Subtabs for vendors to describe their products and availability. This will allow vendors to promote their products and allow students to be informed about what products they can purchase.
+- Subtabs for vendors to describe their products and availability. This will allow vendors to promote their products and inform students about what products they can purchase.
+- Reviews section to comment on different vendors and their products. This will allow vendors to get feedback and see which products did well versus ones that did not as well and be able to restock accordingly.
 
 Project Description (copied/revised from your presentation slides).:
 Problem: Clearly define the problem your application aims to solve.
