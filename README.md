@@ -32,4 +32,4 @@ Team Member List:
  
 - Name: Samuel Rodriguez
   - Role: Note Taker
-  - The three issues I plan to work on: Authentication (Username/Password token based), Account management UI, data storage for users
+  - The three issues I plan to work on: Authentication (Username/Password token based), Account management page, data storage for users that would be useful for the app and retrieval of data
