@@ -28,7 +28,8 @@ Team Member List:
     
 - Name: Jaden Ruan
   - Role: Project Manager
-  - The three issues I plan to work on:
+  - The three issues I plan to work on: Vendor UI design, data for the vendor, data for the user data
+    
  
 - Name: Samuel Rodriguez
   - Role: Note Taker 2
