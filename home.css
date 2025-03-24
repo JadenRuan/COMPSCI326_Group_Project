@@ -1,7 +1,24 @@
-li {
-    display: inline;
-    border: red;
-    border-style: solid;
-    margin: 5rem;
+#navigation-bar {
+    display: flex;
+    justify-content: space-around;
 }
 
+.box {
+    flex: 1 1 auto;
+    padding: 1.5rem;
+    border: solid red;
+    /* margin: auto; */
+    
+    width: 50%;
+    text-align: center;
+}
+
+.logo {
+    border:solid;
+    flex: 1 1 auto;
+}
+
+.my-account {
+    border: solid;
+    /* flex: 1 6 auto; */
+}
