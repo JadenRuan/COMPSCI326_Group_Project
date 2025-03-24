@@ -1,35 +1,107 @@
 body {
     margin: 0px;
+    background-color: #cbd4c6;
 }
 
 #navigation-bar {
     display: flex; 
     justify-content: space-around;
-    /* border: 2px solid red; */
 }
 
 #navigation-bar-left {
     display: flex; 
     flex: 1 1 auto;
     justify-content: flex-start;
-    /* border: 2px solid blue; */
 }
 
 #navigation-bar-right {
     display: flex; 
     flex: 1 1 auto;
     justify-content: flex-end;
-    /* border: 2px solid orange; */
 }
 
-.box {
-    padding: 2.5rem;
+.nav {
+    padding: 2rem;
     text-align: center;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.5rem;
+    /* background-color: azure; */
 } 
-
-
-
 
 .hero-image {
     width: 100%;
+}
+
+h1 {
+    font-family: "Manrope", sans-serif;
+    font-size: 3.5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+#introduction {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    display:flex;
+    font-family: "Manrope", sans-serif;
+}
+
+.intro {
+    font-size: 1.5rem;
+    padding-right: 2rem;
+
+}
+
+.image {
+    padding-right: 0px;
+    align-self:baseline;
+
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+#call-to-action {
+    display: flex;
+    padding-top: 0.75rem;
+    padding-bottom: 3rem;
+    justify-content: center;
+    /* background-color: blanchedalmond; */
+}
+
+.join {
+    padding: 1rem 2rem 1rem 2rem;
+    font-family: "Manrope", sans-serif;
+    border-radius: 25px;
+    font-size: 1.75rem;
+    align-items: center;
+}
+
+a:link, a:visited, a:active {
+    background-color: #5d7067;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #4d5e58;
+    color: white;
+    text-decoration: none;
+}
+
+header a:link, header a:visited, header a:active {
+    color:black;
+    text-decoration: none;
+    background-color: #b4bfb3;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+    align-items: center;
+}
+
+header a:hover {
+    background-color: #9daba0;
 }
