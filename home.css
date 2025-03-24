@@ -1,24 +1,35 @@
+body {
+    margin: 0px;
+}
+
 #navigation-bar {
-    display: flex;
+    display: flex; 
     justify-content: space-around;
+    /* border: 2px solid red; */
+}
+
+#navigation-bar-left {
+    display: flex; 
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    /* border: 2px solid blue; */
+}
+
+#navigation-bar-right {
+    display: flex; 
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    /* border: 2px solid orange; */
 }
 
 .box {
-    flex: 1 1 auto;
-    padding: 1.5rem;
-    border: solid red;
-    /* margin: auto; */
-    
-    width: 50%;
+    padding: 2.5rem;
     text-align: center;
-}
+} 
 
-.logo {
-    border:solid;
-    flex: 1 1 auto;
-}
 
-.my-account {
-    border: solid;
-    /* flex: 1 6 auto; */
+
+
+.hero-image {
+    width: 100%;
 }
