@@ -28,6 +28,10 @@ body {
     /* background-color: azure; */
 } 
 
+/* .logo {
+    background-color: antiquewhite;
+} */
+
 .hero-image {
     width: 100%;
 }
@@ -70,10 +74,13 @@ img {
     padding-top: 0.75rem;
     padding-bottom: 3rem;
     justify-content: center;
-    /* background-color: blanchedalmond; */
+    /* background-color: lanchedalmond; */
 }
 
-.join {
+a.join:link, a.join:visited, a.join:active {
+    background-color: #5d7067;
+    color: white;
+    text-decoration: none;
     padding: 1rem 2rem 1rem 2rem;
     font-family: "Manrope", sans-serif;
     border-radius: 25px;
@@ -81,17 +88,11 @@ img {
     align-items: center;
 }
 
-a:link, a:visited, a:active {
-    background-color: #5d7067;
-    color: white;
-    text-decoration: none;
-}
-
-a:hover {
+a.join:hover {
     background-color: #4d5e58;
     color: white;
     text-decoration: none;
-}
+} 
 
 header a:link, header a:visited, header a:active {
     color:black;
@@ -102,6 +103,12 @@ header a:link, header a:visited, header a:active {
     align-items: center;
 }
 
-header a:hover {
-    background-color: #9daba0;
+
+
+.logo {
+    width: 100px;
+    height: 100px;
 }
+
+
+
