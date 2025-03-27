@@ -1,0 +1,71 @@
+/* Carousel container */
+.carousel {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+  }
+  
+  /* Hide the radio buttons */
+  input[type="radio"] {
+    display: none;
+  }
+  
+  /* Wrap the images */
+  .carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Each image in the carousel */
+  .carousel-item {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+  
+  .carousel-item img {
+    width: 200px;
+    height: 200px;
+  }
+  
+  /* Position the previous and next buttons */
+  .carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+  }
+  
+  label {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+  }
+  
+  label:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Move to the next slide based on which radio is checked */
+  #slide1:checked ~ .carousel-images {
+    transform: translateX(0);
+  }
+  
+  #slide2:checked ~ .carousel-images {
+    transform: translateX(-100%);
+  }
+  
+  #slide3:checked ~ .carousel-images {
+    transform: translateX(-200%);
+  }
+  
+  #slide4:checked ~ .carousel-images {
+    transform: translateX(-300%);
+  }
+  
