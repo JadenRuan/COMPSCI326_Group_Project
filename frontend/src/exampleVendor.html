@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vendor Profile</title>
+  <style>
+    /* Basic reset and styling */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      line-height: 1.6;
+    }
+    /* Header Banner*/
+    header {
+      background-color: #27ae60;
+      color: #fff;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    /* Main container */
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    /* Vendor Profile Section */
+    .vendor-profile {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .vendor-profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .vendor-profile div {
+      flex: 1;
+    }
+    .vendor-profile h2 {
+      margin: 0;
+      font-size: 2em;
+      color: #27ae60;
+    }
+    .vendor-profile p {
+      margin: 5px 0;
+    }
+    /* About Section */
+    .about {
+      margin-bottom: 40px;
+    }
+    .about h3 {
+      color: #27ae60;
+      border-bottom: 2px solid #27ae60;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .about p {
+      margin-top: 10px;
+    }
+    /* Products Section */
+    .products {
+      margin-bottom: 40px;
+    }
+    .products h3 {
+      color: #27ae60;
+      border-bottom: 2px solid #27ae60;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .product-details {
+      padding: 15px;
+    }
+    .product-details h4 {
+      margin: 0 0 10px;
+      color: #333;
+    }
+    /* Location & Schedule Section */
+    .location-schedule {
+      margin-bottom: 40px;
+    }
+    .location-schedule h3 {
+      color: #27ae60;
+      border-bottom: 2px solid #27ae60;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .location-schedule .details {
+      margin-top: 10px;
+    }
+    /* Contact Section */
+    .contact {
+      background: #27ae60;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .contact h3 {
+      margin-top: 0;
+    }
+    .contact p {
+      margin: 5px 0;
+    }
+    .contact a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    /* Footer Styling */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Banner -->
+  <header>
+    <h1>Vendor</h1>
+    <p>Bio</p>
+  </header>
+
+  <div class="container">
+    <!-- Vendor Profile Section -->
+    <section class="vendor-profile">
+      <img src="vendor-profile.jpg" alt="Vendor image">
+      <div>
+        <h2>Vendor</h2>
+        <p><strong>Location:</strong> Address</p>
+        <p><strong>Contact:</strong> (000) 000-0000 | info@gmail.com</p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <h3>About Us</h3>
+      <p>
+        Bio
+      </p>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+      <h3>Our Products</h3>
+      <div class="product-list">
+        <!-- Product Card 1 -->
+        <div class="product-card">
+          <img class="product-image" src="product1.jpg" alt="Product">
+          <div class="product-details">
+            <h4>Product</h4>
+            <p>Bio</p>
+          </div>
+        </div>
+        <!-- Product Card 2 -->
+        <div class="product-card">
+          <img class="product-image" src="product2.jpg" alt="Product">
+          <div class="product-details">
+            <h4>Product</h4>
+            <p>Bio</p>
+          </div>
+        </div>
+        <!-- Product Card 3 -->
+        <div class="product-card">
+          <img class="product-image" src="product3.jpg" alt="Product">
+          <div class="product-details">
+            <h4>Product</h4>
+            <p>Bio</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location & Schedule Section -->
+    <section class="location-schedule">
+      <h3>Location &amp; Schedule</h3>
+      <div class="details">
+        <p><strong>Address:</strong> 123 Market Street, Your City, Your State</p>
+        <p><strong>Operating Hours:</strong> Monday - Saturday: 8 AM - 5 PM</p>
+        <p><strong>Special Events:</strong> Sunday Farmers Market: 9 AM - 2 PM</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+      <h3>Get in Touch</h3>
+      <p>Have any questions or want to place an order?</p>
+      <p>Email us at <a href="mailto:info@greenfieldsfarm.com">info@greenfieldsfarm.com</a> or call (555) 123-4567.</p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; Footer</p>
+  </footer>
+</body>
+</html>
