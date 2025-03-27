@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farmers Market Vendors</title>
+  <style>
+    /* Basic styling */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      line-height: 1.6;
+    }
+    /* Header styling with background image */
+    header {
+      background: url('farmers-market.jpg') no-repeat center center/cover;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    /* Grid container for vendor cards */
+    .vendor-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    /* Individual vendor card styling */
+    .vendor-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    .vendor-card:hover {
+      transform: translateY(-5px);
+    }
+    .vendor-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .vendor-details {
+      padding: 20px;
+    }
+    .vendor-details h2 {
+      margin-top: 0;
+      color: #27ae60;
+    }
+    /* Footer styling */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #27ae60;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Farmers Market Vendors</h1>
+    <p>Discover local, fresh produce and artisanal delights.</p>
+  </header>
+  
+  <div class="vendor-container">
+    <!-- Vendor Card 1 -->
+    <div class="vendor-card">
+      <img class="vendor-image" src="vendor1.jpg" alt="Green Fields Farm">
+      <div class="vendor-details">
+        <h2>Green Fields Farm</h2>
+        <p>Providing organic vegetables and seasonal produce directly from our farm.</p>
+      </div>
+    </div>
+    <!-- Vendor Card 2 -->
+    <div class="vendor-card">
+      <img class="vendor-image" src="vendor2.jpg" alt="Honey Bee Delights">
+      <div class="vendor-details">
+        <h2>Honey Bee Delights</h2>
+        <p>Local, raw honey and bee-related products to sweeten your day.</p>
+      </div>
+    </div>
+    <!-- Vendor Card 3 -->
+    <div class="vendor-card">
+      <img class="vendor-image" src="vendor3.jpg" alt="Rustic Breads">
+      <div class="vendor-details">
+        <h2>Rustic Breads</h2>
+        <p>Artisan breads freshly baked daily with natural, locally sourced ingredients.</p>
+      </div>
+    </div>
+    <!-- Vendor Card 4 -->
+    <div class="vendor-card">
+      <img class="vendor-image" src="vendor4.jpg" alt="Farm Fresh Dairy">
+      <div class="vendor-details">
+        <h2>Farm Fresh Dairy</h2>
+        <p>Locally sourced milk, cheeses, and more from our small dairy farms.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Farmers Market. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vendor Account Management</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: url('farmers-market.jpg') no-repeat center center/cover;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .vendor-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .vendor-form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .vendor-form input, .vendor-form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .vendor-form textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    .vendor-section {
+      margin-bottom: 40px;
+    }
+    .submit-btn {
+      grid-column: span 2;
+      text-align: center;
+    }
+    .submit-btn button {
+      background: #27ae60;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .submit-btn button:hover {
+      background: #219150;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #27ae60;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vendor Account Management</h1>
+    <p>Update your vendor profile below.</p>
+  </header>
+
+  <div class="form-container">
+    <form class="vendor-form">
+      <!-- Vendor 1 -->
+      <div class="vendor-section">
+        <label>Business Name</label>
+        <input type="text" value="Green Fields Farm">
+
+        <label>Description</label>
+        <textarea>Providing organic vegetables and seasonal produce directly from our farm.</textarea>
+
+        <label>Image URL</label>
+        <input type="text" value="vendor1.jpg">
+
+        <label>Alt Text</label>
+        <input type="text" value="Green Fields Farm">
+      </div>
+
+      <!-- Vendor 2 -->
+      <div class="vendor-section">
+        <label>Business Name</label>
+        <input type="text" value="Honey Bee Delights">
+
+        <label>Description</label>
+        <textarea>Local, raw honey and bee-related products to sweeten your day.</textarea>
+
+        <label>Image URL</label>
+        <input type="text" value="vendor2.jpg">
+
+        <label>Alt Text</label>
+        <input type="text" value="Honey Bee Delights">
+      </div>
+
+      <!-- Vendor 3 -->
+      <div class="vendor-section">
+        <label>Business Name</label>
+        <input type="text" value="Rustic Breads">
+
+        <label>Description</label>
+        <textarea>Artisan breads freshly baked daily with natural, locally sourced ingredients.</textarea>
+
+        <label>Image URL</label>
+        <input type="text" value="vendor3.jpg">
+
+        <label>Alt Text</label>
+        <input type="text" value="Rustic Breads">
+      </div>
+
+      <!-- Vendor 4 -->
+      <div class="vendor-section">
+        <label>Business Name</label>
+        <input type="text" value="Farm Fresh Dairy">
+
+        <label>Description</label>
+        <textarea>Locally sourced milk, cheeses, and more from our small dairy farms.</textarea>
+
+        <label>Image URL</label>
+        <input type="text" value="vendor4.jpg">
+
+        <label>Alt Text</label>
+        <input type="text" value="Farm Fresh Dairy">
+      </div>
+
+      <div class="submit-btn">
+        <button type="submit">Save Changes</button>
+      </div>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Farmers Market. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
