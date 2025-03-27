@@ -13,11 +13,11 @@
       line-height: 1.6;
     }
     header {
-      background: url('farmers-market.jpg') no-repeat center center/cover;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
+  background-color: #27ae60; /* green */
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+}
     header h1 {
       font-size: 3em;
       margin: 0;
@@ -35,9 +35,11 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
     .vendor-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
     }
     .vendor-form label {
       font-weight: bold;
@@ -89,64 +91,29 @@
 
   <div class="form-container">
     <form class="vendor-form">
-      <!-- Vendor 1 -->
+
       <div class="vendor-section">
         <label>Business Name</label>
-        <input type="text" value="Green Fields Farm">
+        <input type="text" value="">
 
-        <label>Description</label>
+        <label>Bio</label>
         <textarea></textarea>
 
-        <label>Image URL</label>
-        <input type="text" value="vendor1.jpg">
-
-        <label>Alt Text</label>
-        <input type="text" value="Green Fields Farm">
-      </div>
-
-      <!-- Vendor 2 -->
-      <div class="vendor-section">
-        <label>Business Name</label>
-        <input type="text" value="Honey Bee Delights">
-
-        <label>Description</label>
-        <textarea></textarea>
+        <label>Contact</label>
+        <input type="text" value="">
 
         <label>Image URL</label>
-        <input type="text" value="vendor2.jpg">
+        <input type="text" value="">
 
-        <label>Alt Text</label>
-        <input type="text" value="Honey Bee Delights">
-      </div>
+        <label>Location</label>
+        <input type="text" value="">
 
-      <!-- Vendor 3 -->
-      <div class="vendor-section">
-        <label>Business Name</label>
-        <input type="text" value="Rustic Breads">
+        <label>Operating Hours</label>
+        <input type="text" value="">
 
-        <label>Description</label>
-        <textarea></textarea>
+        <label>Special Events</label>
+        <input type="text" value="">
 
-        <label>Image URL</label>
-        <input type="text" value="vendor3.jpg">
-
-        <label>Alt Text</label>
-        <input type="text" value="Rustic Breads">
-      </div>
-
-      <!-- Vendor 4 -->
-      <div class="vendor-section">
-        <label>Business Name</label>
-        <input type="text" value="Farm Fresh Dairy">
-
-        <label>Description</label>
-        <textarea></textarea>
-
-        <label>Image URL</label>
-        <input type="text" value="vendor4.jpg">
-
-        <label>Alt Text</label>
-        <input type="text" value="Farm Fresh Dairy">
       </div>
 
       <div class="submit-btn">
