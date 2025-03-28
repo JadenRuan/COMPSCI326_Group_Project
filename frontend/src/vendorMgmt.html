@@ -51,6 +51,11 @@
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
+      transition: transform 0.2s ease;
+    }
+    .vendor-form input:hover,
+    .vendor-form textarea:hover {
+    transform: scale(1.03); /* Slight zoom on hover */
     }
     .vendor-form textarea {
       resize: vertical;
@@ -74,6 +79,7 @@
     }
     .submit-btn button:hover {
       background: #219150;
+      transform: scale(1.05);
     }
     footer {
       text-align: center;
@@ -90,7 +96,7 @@
   </header>
 
   <div class="form-container">
-    <form class="vendor-form">
+    <form class="vendor-form" onsubmit="event.preventDefault()">
 
       <div class="vendor-section">
         <label>Business Name</label>
