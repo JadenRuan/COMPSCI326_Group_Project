@@ -11,3 +11,11 @@ body {
     background-color: cornflowerblue;
     padding: 2.5rem;
 }
+
+#landing:hover {
+    background-color: lightcoral;
+}
+
+#landing.drag-over {
+    background-color:forestgreen;
+}
