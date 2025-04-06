@@ -16,6 +16,8 @@ landing.addEventListener('dragover', preventDefaultBehavior);
 
 // landing.addEventListener('',colorWhenDragover);
 
-landing.addEventListener('dragover', () => {
-    landing.classList.add('drag-over');
-});
+const inLandingZone = () => {landing.classList.add('in-landing-zone')};
+const notInLandingZone = () => {landing.classList.remove('in-landing-zone')};
+
+landing.addEventListener('dragover', inLandingZone);
+landing.addEventListener('dragleave', notInLandingZone);
