@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="./drag-and-drop.css" rel="stylesheet">
-
-    <title>Document</title>
+    
+    <title>File Drag and Drop</title>
 </head>
 <body>
-    
+    <div id="landing">
+        <p>Drag your file here!</p>
+    </div>
+    <input type="file" id:"file-input" multiple hidden> 
+    <!-- control ux by keeping file upload button hidden -->
+    <div id="preview">
+        <p>Preview your files!</p>
+    </div>
+
+    <script src="drag-and-drop-script.js"></script>
 </body>
 </html>
