@@ -33,6 +33,10 @@ body {
     background-color:forestgreen;
 }
 
+#landing.already-dragged-file:hover {
+    background-color: darkgreen;
+}
+
 
 p {
     font-size: 1.5rem;
