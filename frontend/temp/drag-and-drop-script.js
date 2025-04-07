@@ -8,6 +8,7 @@ function preventDefaultBehavior(event) {
 
 
 landing.addEventListener('dragover', preventDefaultBehavior);
+
 // landing.addEventListener('drop', handleDrop);
 
 // function colorWhenDragover() {
@@ -18,6 +19,18 @@ landing.addEventListener('dragover', preventDefaultBehavior);
 
 const inLandingZone = () => {landing.classList.add('in-landing-zone')};
 const notInLandingZone = () => {landing.classList.remove('in-landing-zone')};
+
+const changeTextDuringHover = () => {
+    document.getElementById('landing-message').innerHTML = "Please ensure you are dragging a file!"
+}
+
+const changeTextAfterHover = () => {
+    document.getElementById('landing-message').innerHTML = "Drag your files here!"
+}
+
+
+landing.addEventListener('mouseover', changeTextDuringHover);
+landing.addEventListener('mouseleave', changeTextAfterHover);
 
 landing.addEventListener('dragover', inLandingZone);
 landing.addEventListener('dragleave', notInLandingZone);

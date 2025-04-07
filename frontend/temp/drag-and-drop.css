@@ -3,13 +3,26 @@ body {
 }
 
 #landing {
+    display: grid;
     background-color: lightblue;
     padding: 2.5rem;
+    width: 25vh;
+    height: 25vh;
+
+    justify-content: center;
+    align-content: center;
 }
 
 #preview {
+    display: grid;
     background-color: cornflowerblue;
     padding: 2.5rem;
+
+    width: 25vh;
+    height: 25vh;
+
+    justify-content: center;
+    align-content: center;
 }
 
 #landing:hover {
