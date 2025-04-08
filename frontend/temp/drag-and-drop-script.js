@@ -73,6 +73,7 @@ const isValidFileType = (f) => {
 
 
 
+
 // add event listeners
 landing.addEventListener('dragover', inLandingZone);
 landing.addEventListener('dragleave',notInLandingZone);
