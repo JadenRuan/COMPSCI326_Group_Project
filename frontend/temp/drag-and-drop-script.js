@@ -29,6 +29,7 @@ const changeTextAfterHover = () => { // message not during hover
     document.getElementById('landing-message').innerHTML = "Drag your files here!"
 }
 
+let counter = 0;
 const fileDrop = (event) => {
     event.preventDefault(); 
 
@@ -38,9 +39,6 @@ const fileDrop = (event) => {
         file_input.files = files;
     }
 
-     
-    
-    let counter = 0;
     while (counter < file_input.files.length) {
         const f = file_input.files[counter];
         const fr = new FileReader();
@@ -57,10 +55,20 @@ const fileDrop = (event) => {
             previewing.appendChild(prev_img); 
         }
         counter += 1;
+        console.log(counter);
     }   
+
+    counter = 0;
+
 }
 
-const isValidFileType = (file) => { return true; }
+const isValidFileType = (f) => { 
+    if (f.type == "image/jpeg" || f.type == "image/png") {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 
