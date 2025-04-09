@@ -5,12 +5,15 @@ body {
 #landing {
     display: grid;
     background-color: lightblue;
-    /* padding: 2.5rem; */
+
     width: 25vh;
     height: 25vh;
 
     justify-content: center;
     align-content: center;
+
+    margin-bottom: 4px; 
+    /* adjust margin-bottom because of gaps between images */
 }
 
 #previewing {
@@ -23,6 +26,8 @@ body {
 
     justify-content: center;
     align-content: center;
+
+    margin: 0pxx;
 }
 
 #landing:hover {
@@ -53,4 +58,5 @@ p {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    margin: 0px;
 }

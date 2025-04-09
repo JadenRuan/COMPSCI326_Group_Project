@@ -29,6 +29,8 @@ const changeTextAfterHover = () => { // message not during hover
     document.getElementById('landing-message').innerHTML = "Drag your files here!"
 }
 
+flag = true;
+
 const fileDrop = (event) => {
     let counter = 0;
     event.preventDefault(); 
@@ -43,7 +45,11 @@ const fileDrop = (event) => {
 
     const previewing = document.getElementById('previewing');
     previewing.classList.add('has-image');
-    previewing.innerHTML = '';
+
+    if (flag) {
+        previewing.innerHTML = '';
+        flag = false;
+    } 
      
 
     while (counter < file_input.files.length) {
