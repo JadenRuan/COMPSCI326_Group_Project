@@ -49,9 +49,10 @@ class ImageDatabase {
         
             r.onload = async () => {
                 const d = r.result;
-
+                // const f = true;
                 const imageToUpload = {
                     img_id: image.name,
+                    flag: true,
                     size: image.size,
                     type: image.type,
                     data: d,
@@ -64,10 +65,37 @@ class ImageDatabase {
 
             r.onerror = () => { reject(r.error); }
 
-            r.readAsArrayBuffer(image);
+            
+            r.readAsArrayBuffer(image); 
+            
         }) 
     }
 
+    async getImages() {
+        const idb = await this.openImageDatabase();
+        const t = idb.transaction("images", "readwrite");
+        const store = t.objectStore("images");
+        const all = store.getAll();
+
+        return new Promise((resolve, reject) => {
+            all.onsuccess = () => { resolve(all.result); }
+            all.onerror = () => { reject("failed to get images"); }
+        })
+    }
+
+    async clearImages() {
+        const idb = await this.openImageDatabase();
+        const t = idb.transaction("images", "readwrite");
+        const store = t.objectStore("images");
+        const del = store.clear();
+
+        return new Promise((resolve, reject) => {
+            del.onsuccess = () => { resolve("iamge deleted successfully")}
+            del.onerror = () => { reject("failed to delete image") }
+        })
+    }
+
+    
 }
 
 
@@ -78,6 +106,7 @@ class ImageDatabase {
 const landing = document.getElementById("landing");
 const file_input = document.getElementById("file-input");
 const idb = new ImageDatabase("idb");
+const previewing = document.getElementById('previewing');
 
 // prevent default behaviors
 function preventDefaultBehavior(event) {
@@ -108,7 +137,11 @@ const changeTextAfterHover = () => { // message not during hover
 
 let flag = true;
 
-const fileDrop = (event) => {
+
+
+
+
+const fileDrop =  (event) => {
     let counter = 0;
     event.preventDefault(); 
 
@@ -120,7 +153,6 @@ const fileDrop = (event) => {
         file_input.files = files; // store files in box
     }
 
-    const previewing = document.getElementById('previewing');
     previewing.classList.add('has-image');
 
     if (flag) {
@@ -142,9 +174,10 @@ const fileDrop = (event) => {
             }
 
             try {
-                const k = await idb.uploadImage(f);
-                console.log("added to idb:", k);
+                const k =  await idb.uploadImage(f);
                 previewing.appendChild(prev_img);
+                console.log("added to idb:", k);
+                
             } catch {
                 console.log("already in idb")
             }
@@ -152,9 +185,31 @@ const fileDrop = (event) => {
                     
         }
         counter += 1;
-    }   
+    } 
 
 }
+
+// const previewFiles = async () => {
+//     const files = await idb.getImages();
+//     previewing.innerHTML = '';
+//     console.log("number of files:", files.length);
+//     files.forEach((f)=> {
+
+//         if (f.size !== -1) {
+
+//             const prev_img = document.createElement('img');
+//             const b = new Blob([f.data], {type: f.type});
+//             const img_url = URL.createObjectURL(b);
+//             prev_img.src = img_url;
+//             prev_img.onload = () => {
+//                 URL.revokeObjectURL(img_url);
+//             }
+
+
+//             previewing.appendChild(prev_img);
+//         }
+//     })  
+// }
 
 const isValidFileType = (f) => { 
     if (f.type == "image/jpeg" || f.type == "image/png") {
@@ -163,6 +218,7 @@ const isValidFileType = (f) => {
         return false;
     }
 }
+
 
 
 
@@ -176,3 +232,5 @@ landing.addEventListener('drop',notInLandingZone);
 
 landing.addEventListener('drop',alreadyDraggedFile);
 landing.addEventListener('drop',fileDrop);
+
+window.addEventListener('beforeunload', () => {idb.clearImages(); });
