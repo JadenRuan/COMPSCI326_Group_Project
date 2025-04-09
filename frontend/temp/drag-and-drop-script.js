@@ -58,14 +58,15 @@ class ImageDatabase {
                     data: d,
                 }
 
-                const k = await this.addImage(imageToUpload);
-                resolve(k);
-                return true;
+                // const k = await this.addImage(imageToUpload);
+                // resolve(k);
+                this.addImage(imageToUpload)
+                    .then(() => {console.log("in uploadImage, resolved"); resolve();})
+                    .catch((r)=> {console.log("in uploadImage, rejected"); reject(r.error)});
             }
 
             r.onerror = () => { reject(r.error); }
 
-            
             r.readAsArrayBuffer(image); 
             
         }) 
@@ -107,6 +108,7 @@ const landing = document.getElementById("landing");
 const file_input = document.getElementById("file-input");
 const idb = new ImageDatabase("idb");
 const previewing = document.getElementById('previewing');
+let flag = true;
 
 // prevent default behaviors
 function preventDefaultBehavior(event) {
@@ -135,8 +137,12 @@ const changeTextAfterHover = () => { // message not during hover
     document.getElementById('landing-message').innerHTML = "Drag your files here!"
 }
 
-let flag = true;
-
+// const changeTextOnReupload = () => {
+//     if (!flag) {
+//         document.getElementById('previewing').innerHTML = "Already in database."
+//         console.log("change text on reupload");
+//     }   
+// }
 
 
 
@@ -153,13 +159,12 @@ const fileDrop =  (event) => {
         file_input.files = files; // store files in box
     }
 
-    previewing.classList.add('has-image');
+    
 
     if (flag) {
-        previewing.innerHTML = '';
+        previewing.innerHTML = "Add more files?";
         flag = false;
     } 
-     
 
     while (counter < file_input.files.length) {
         const f = file_input.files[counter];
@@ -173,15 +178,14 @@ const fileDrop =  (event) => {
                 prev_img.src = event.target.result;
             }
 
-            try {
-                const k =  await idb.uploadImage(f);
+
+            idb.uploadImage(f).then(() => {
+                previewing.classList.add('has-image');
                 previewing.appendChild(prev_img);
-                console.log("added to idb:", k);
-                
-            } catch {
-                console.log("already in idb")
-            }
-            
+            }).catch(() => {
+                previewing.innerHTML = "already in db"
+                console.log("caught promise");
+            })
                     
         }
         counter += 1;
@@ -233,4 +237,4 @@ landing.addEventListener('drop',notInLandingZone);
 landing.addEventListener('drop',alreadyDraggedFile);
 landing.addEventListener('drop',fileDrop);
 
-window.addEventListener('beforeunload', () => {idb.clearImages(); });
+// window.addEventListener('beforeunload', () => {idb.clearImages(); }); // optional
