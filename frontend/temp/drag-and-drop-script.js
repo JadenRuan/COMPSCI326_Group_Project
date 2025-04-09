@@ -29,36 +29,40 @@ const changeTextAfterHover = () => { // message not during hover
     document.getElementById('landing-message').innerHTML = "Drag your files here!"
 }
 
-let counter = 0;
 const fileDrop = (event) => {
+    let counter = 0;
     event.preventDefault(); 
 
-    const files = event.dataTransfer.files;
+    const files = event.dataTransfer.files; // get files from event
 
-    if (files.length !== 0) {
-        file_input.files = files;
+    if (files.length === 0) {
+        return;
+    } else {
+        file_input.files = files; // store files in box
     }
+
+    const previewing = document.getElementById('previewing');
+    previewing.classList.add('has-image');
+    previewing.innerHTML = '';
+     
 
     while (counter < file_input.files.length) {
         const f = file_input.files[counter];
         const fr = new FileReader();
+
         fr.readAsDataURL(f);
+
         fr.onloadend = (event) => {
             const prev_img = document.createElement('img');
             if (isValidFileType(f)) {
                 prev_img.src = event.target.result;
             }
 
-            const previewing = document.getElementById('previewing');
-            previewing.classList.add('has-image');
-            previewing.innerHTML = '';
-            previewing.appendChild(prev_img); 
+            previewing.appendChild(prev_img);
+            
         }
         counter += 1;
-        console.log(counter);
     }   
-
-    counter = 0;
 
 }
 
