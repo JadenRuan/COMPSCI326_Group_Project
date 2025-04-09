@@ -1,6 +1,7 @@
-export class ImageDatabase {
+ class ImageDatabase {
     constructor(dbName) {
         this.dbName = dbName;
+        console.log("new created");
     }
 
     async openImageDatabase() {

@@ -1,6 +1,81 @@
+class ImageDatabase {
+    constructor(dbName) {
+        this.dbName = dbName;
+    }
+
+    async openImageDatabase() {
+        return new Promise((resolve, reject) => {
+            if (this.dbName === "") {
+                reject("Database name cannot be empty.");
+                return;
+            }
+
+            let request = indexedDB.open(this.dbName); 
+
+            request.onupgradeneeded = (event) => {
+                let db = event.target.result;
+                if (!db.objectStoreNames.contains("images")) {
+                    db.createObjectStore("images", {keyPath: 'img_id'});
+                } 
+            };
+
+            request.onsuccess = (event) => { resolve(event.target.result); };
+            request.onerror = (event) => { reject(event.target.error); }
+
+        })
+    }
+
+    async addImage(image) {
+        const idb = await this.openImageDatabase();
+        const t = idb.transaction("images", "readwrite");
+        const store = t.objectStore("images");
+        const request = store.add(image);
+
+        return new Promise((resolve, reject) => {
+            request.onsuccess = (event) => {
+                resolve(event.target.result);
+            };
+            request.onerror = (event) => {
+                console.error(event.target.error);
+                reject("failed to add image.")
+            }
+        })
+    }
+
+    async uploadImage(image) {
+        return new Promise((resolve, reject) => {
+            const r = new FileReader();
+        
+            r.onload = async () => {
+                const d = r.result;
+
+                const imageToUpload = {
+                    img_id: image.name,
+                    size: image.size,
+                    type: image.type,
+                    data: d,
+                }
+
+                const k = await this.addImage(imageToUpload);
+                resolve(k);
+            }
+
+            r.onerror = () => { reject(r.error); }
+
+            r.readAsArrayBuffer(image);
+        }) 
+    }
+
+}
+
+
+
+
+
+
 const landing = document.getElementById("landing");
 const file_input = document.getElementById("file-input");
-console.log(file_input);
+const idb = new ImageDatabase("idb");
 
 // prevent default behaviors
 function preventDefaultBehavior(event) {
@@ -29,7 +104,7 @@ const changeTextAfterHover = () => { // message not during hover
     document.getElementById('landing-message').innerHTML = "Drag your files here!"
 }
 
-flag = true;
+let flag = true;
 
 const fileDrop = (event) => {
     let counter = 0;
@@ -65,6 +140,7 @@ const fileDrop = (event) => {
             }
 
             previewing.appendChild(prev_img);
+            idb.uploadImage(f);
             
         }
         counter += 1;
@@ -82,6 +158,16 @@ const isValidFileType = (f) => {
 
 
 
+// const i = {
+//     img_id: 12,
+//     size: 12,
+//     type: 12,
+//     data: 12,
+// }
+
+// idb.addImage(i);
+
+// console.log("test");
 
 
 // add event listeners
