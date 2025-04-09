@@ -1,3 +1,4 @@
+// image database class and methods
 class ImageDatabase {
     constructor(dbName) {
         this.dbName = dbName;
@@ -58,6 +59,7 @@ class ImageDatabase {
 
                 const k = await this.addImage(imageToUpload);
                 resolve(k);
+                return true;
             }
 
             r.onerror = () => { reject(r.error); }
@@ -133,15 +135,21 @@ const fileDrop = (event) => {
 
         fr.readAsDataURL(f);
 
-        fr.onloadend = (event) => {
+        fr.onloadend = async (event) => {
             const prev_img = document.createElement('img');
             if (isValidFileType(f)) {
                 prev_img.src = event.target.result;
             }
 
-            previewing.appendChild(prev_img);
-            idb.uploadImage(f);
+            try {
+                const k = await idb.uploadImage(f);
+                console.log("added to idb:", k);
+                previewing.appendChild(prev_img);
+            } catch {
+                console.log("already in idb")
+            }
             
+                    
         }
         counter += 1;
     }   
@@ -156,18 +164,6 @@ const isValidFileType = (f) => {
     }
 }
 
-
-
-// const i = {
-//     img_id: 12,
-//     size: 12,
-//     type: 12,
-//     data: 12,
-// }
-
-// idb.addImage(i);
-
-// console.log("test");
 
 
 // add event listeners
