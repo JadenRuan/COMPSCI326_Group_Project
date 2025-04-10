@@ -3,11 +3,12 @@ body {
     background-color: #cbd4c6;
 }
 
+/* NAVBAR */
+
 .navigation-bar {
-    /* border: 3px solid black; */
     display: grid;
     grid-template-rows: 75px 50px;
-    grid-template-columns: 125px min-content min-content min-content min-content 4.5fr min-content;
+    grid-template-columns: 125px min-content min-content min-content min-content 0.75fr 2fr min-content;
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -16,7 +17,6 @@ body {
 .nav-logo {
     grid-row: 1/3;
     grid-column: 1/2;
-    /* background-color:cornflowerblue; */
 }
 
 .nav-logo img {
@@ -28,7 +28,6 @@ body {
 .nav-home {
     grid-row: 2/3;
     grid-column: 2/3;
-    /* background-color: bisque; */
 
     display: grid;
     align-content: center;
@@ -41,7 +40,6 @@ body {
 .nav-about-us {
     grid-row: 2/3;
     grid-column: 3/4;
-    /* background-color: powderblue; */
 
     display: grid;
     align-content: center;
@@ -55,7 +53,6 @@ body {
 .nav-vendors {
     grid-row: 2/3;
     grid-column: 4/5;
-    /* background-color: lightpink; */
 
     display: grid;
     align-content: center;
@@ -68,7 +65,6 @@ body {
 .nav-products {
     grid-row: 2/3;
     grid-column: 5/6;
-    /* background-color: lightgoldenrodyellow; */
 
     display: grid;
     align-content: center;
@@ -78,9 +74,19 @@ body {
     padding-right: 1rem;
 }
 
-.nav-spacer {
+.nav-upload-images {
     grid-row: 2/3;
     grid-column: 6/7;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.nav-spacer {
+    grid-row: 2/3;
+    grid-column: 7/8;
     /* background-color: linen; */
 
     display: grid;
@@ -90,7 +96,7 @@ body {
 
 .nav-my-account {
     grid-row: 2/3;
-    grid-column: 7/8;
+    grid-column: 8/9;
     /* background-color: lightseagreen; */
 
     display: grid;
@@ -141,8 +147,6 @@ h1 {
     grid-row: 1/2;
     grid-column: 1/3;
     padding: 0px;
-    
-
 }
 
 .introduction > img {
@@ -154,14 +158,10 @@ h1 {
     vertical-align: bottom;
 }
 
-
-
-
 img {
     max-width: 100%;
     height: auto;
 }
-
 
 header a:not(.nav-logo > a):link, header a:not(.nav-log > a):visited, header a:not(.nav-logo > a):active {
     font-size: 1.5rem;
@@ -194,8 +194,9 @@ p {
     font-size: 1.5rem;
 }
 
+/* CALL TO ACTION */
+
 .call-to-action {
-    /* border: solid green; */
     display: grid;
     grid-template-rows: min-content min-content;
     grid-template-columns: 1fr; 
@@ -244,15 +245,10 @@ p {
     align-items: center;
 }
 
-
-
 .call-link > a.join:hover {
     background-color: #4d5e58;
     color: white;
     text-decoration: none;
-    /* display: grid;
-    align-items: center;
-    justify-content: center; */
 }  
 
 
