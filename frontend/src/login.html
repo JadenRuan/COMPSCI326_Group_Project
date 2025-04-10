@@ -2,213 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Vendor Dashboard</title>
+  <title>Login / Register</title>
   <style>
-    body { font-family: Arial; background: #f0f2f5; padding: 2rem; }
-    .container { background: white; padding: 2rem; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    input, textarea, button { width: 100%; margin: 0.5rem 0; padding: 0.5rem; font-size: 1rem; }
-    img { max-width: 100px; max-height: 100px; margin-top: 5px; }
-    h2, h3 { text-align: center; }
-    ul { padding-left: 0; list-style: none; }
-    li { margin-bottom: 1rem; }
-    /* Styles for drag-and-drop area */
-    #landing {
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      transition: background 0.3s ease;
-    }
-    #previewing {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
+    body { font-family: Arial; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .container { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); width: 300px; }
+    form { display: none; flex-direction: column; }
+    form.active { display: flex; }
+    input, button { margin: 0.5rem 0; padding: 0.5rem; font-size: 1rem; }
+    .toggle { margin-top: 1rem; text-align: center; color: #007bff; cursor: pointer; }
+    .message { text-align: center; margin-top: 1rem; }
   </style>
 </head>
+
 <body>
+  <div class="container"> 
+    <h2 id="form-title">Login</h2>
 
-<div class="container">
-  <h2>Vendor Info</h2>
-  <form id="vendor-form">
-    <input id="vendor-name" type="text" placeholder="Vendor Name" required />
-    <textarea id="vendor-desc" placeholder="Description" required></textarea>
-    <button type="submit">Save Info</button>
-  </form>
-  <div class="message" id="message"></div>
+    <form id="login-form" class="active">
+      <input id="login-email" type="email" placeholder="Email" required />
+      <input id="login-password" type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
 
-  <hr>
-  <h3>Add Product</h3>
-  <form id="product-form">
-    <input type="text" id="product-name" placeholder="Product Name" required>
-    <input type="number" id="product-price" placeholder="Price" required>
-    <!-- Drag & Drop area for product image -->
-    <div id="landing">
-      <p id="landing-message">Drag your image here. Only PNG and JPEG images supported.</p>
-    </div>
-    <div id="previewing">
-      <p id="previewing-message">Preview your file.</p>
-    </div>
-    <button type="submit">Add Product</button>
-  </form>
+    <form id="register-form">
+      <input id="register-name" type="text" placeholder="Name" required />
+      <input id="register-email" type="email" placeholder="Email" required />
+      <input id="register-password" type="password" placeholder="Password" required />
+      <button type="submit">Register</button>
+    </form>
 
-  <h3>Your Products</h3>
-  <ul id="product-list"></ul>
-
-  <button onclick="logout()">Logout</button>
-</div>
-
-<script>
-  let db;
-  const userEmail = localStorage.getItem("loggedInUser");
-  // Global variable to store the image data from drag-and-drop
-  let currentProductImage = null;
-
-  if (!userEmail) {
-    window.location.href = "index.html";
-  }
-
-  // Open or create the IndexedDB database
-  const request = indexedDB.open("UserDB", 2);
-  request.onsuccess = function (event) {
-    db = event.target.result;
-    loadVendorInfo();
-  };
-
-  function loadVendorInfo() {
-    const tx = db.transaction(["vendors"], "readonly");
-    const store = tx.objectStore("vendors");
-    const getRequest = store.get(userEmail);
-
-    getRequest.onsuccess = function () {
-      const data = getRequest.result;
-      if (data) {
-        document.getElementById("vendor-name").value = data.name;
-        document.getElementById("vendor-desc").value = data.description;
-        loadProductList(data.products || []);
-      }
-    };
-  }
-
-  // Save vendor info to IndexedDB
-  document.getElementById("vendor-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = document.getElementById("vendor-name").value.trim();
-    const description = document.getElementById("vendor-desc").value.trim();
-
-    const tx = db.transaction(["vendors"], "readwrite");
-    const store = tx.objectStore("vendors");
-    store.put({ email: userEmail, name, description });
-
-    document.getElementById("message").textContent = "Vendor info saved!";
-  });
-
-  // Drag and drop functionality for image upload
-  const landing = document.getElementById("landing");
-  const previewing = document.getElementById("previewing");
-
-  // Prevent default behaviors for drag events
-  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    landing.addEventListener(eventName, preventDefaults, false);
-  });
-  
-  function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  landing.addEventListener("dragover", () => {
-    landing.style.background = "#e8e8e8";
-  });
-
-  landing.addEventListener("dragleave", () => {
-    landing.style.background = "";
-  });
-
-  landing.addEventListener("drop", handleDrop, false);
-
-  function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    if (files.length === 0) return;
-    
-    // Process the first file (you can extend this for multiple files if needed)
-    const file = files[0];
-    if (!isValidFileType(file)) {
-      alert("Only PNG and JPEG images are supported.");
-      return;
-    }
-    
-    const reader = new FileReader();
-    reader.onload = function () {
-      currentProductImage = reader.result;
-      previewing.innerHTML = "";
-      const img = document.createElement("img");
-      img.src = currentProductImage;
-      previewing.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  }
-
-  function isValidFileType(file) {
-    return file.type === "image/png" || file.type === "image/jpeg";
-  }
-
-  // Handle product form submission using the uploaded image via drag and drop
-  document.getElementById("product-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const productName = document.getElementById("product-name").value.trim();
-    const productPrice = parseFloat(document.getElementById("product-price").value);
-    
-    if (!productName || isNaN(productPrice) || !currentProductImage) {
-      alert("Please fill in all fields and upload a product image using drag and drop.");
-      return;
-    }
-
-    const tx = db.transaction(["vendors"], "readwrite");
-    const store = tx.objectStore("vendors");
-    const getRequest = store.get(userEmail);
-
-    getRequest.onsuccess = function () {
-      const data = getRequest.result;
-      if (data) {
-        data.products = data.products || [];
-        const newProduct = {
-          id: Date.now(),
-          name: productName,
-          price: productPrice,
-          image: currentProductImage
-        };
-        data.products.push(newProduct);
-        store.put(data);
-
-        document.getElementById("product-form").reset();
-        loadProductList(data.products);
-        // Reset drag and drop area for the next image upload
-        currentProductImage = null;
-        previewing.innerHTML = '<p id="previewing-message">Preview your file.</p>';
-      }
-    };
-  });
-
-  function loadProductList(products = []) {
-    const list = document.getElementById("product-list");
-    list.innerHTML = '';
-    products.forEach(product => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <strong>${product.name}</strong> - $${product.price.toFixed(2)}<br>
-        <img src="${product.image}" alt="${product.name}">
-      `;
-      list.appendChild(li);
-    });
-  }
-
-  function logout() {
-    localStorage.removeItem("loggedInUser");
-    window.location.href = "index.html";
-  }
-</script>
-
+    <div class="toggle" onclick="toggleForm()">Don't have an account? Register</div>
+    <div class="message" id="message"></div>
+  </div>
+  <script src="app.js"></script>
 </body>
 </html>

@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <title>Vendor Dashboard</title>
+  <!-- Include your drag-and-drop styles -->
+  <link rel="stylesheet" href="drag-and-drop.css">
   <style>
+    /* Additional dashboard styling */
     body { font-family: Arial; background: #f0f2f5; padding: 2rem; }
     .container { background: white; padding: 2rem; max-width: 500px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
     input, textarea, button { width: 100%; margin: 0.5rem 0; padding: 0.5rem; font-size: 1rem; }
@@ -11,18 +14,6 @@
     h2, h3 { text-align: center; }
     ul { padding-left: 0; list-style: none; }
     li { margin-bottom: 1rem; }
-    /* Styles for drag-and-drop area */
-    #landing {
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      transition: background 0.3s ease;
-    }
-    #previewing {
-      text-align: center;
-      margin-bottom: 1rem;
-    }
   </style>
 </head>
 <body>
@@ -41,12 +32,14 @@
   <form id="product-form">
     <input type="text" id="product-name" placeholder="Product Name" required>
     <input type="number" id="product-price" placeholder="Price" required>
-    <!-- Drag & Drop area for product image -->
+    <!-- Drag & Drop area -->
     <div id="landing">
-      <p id="landing-message">Drag your image here. Only PNG and JPEG images supported.</p>
+        <p id="landing-message">Drag your file here. Images only.</p>
     </div>
+    <input type="file" id="file-input" multiple hidden> 
+    <!-- control ux by keeping file upload button hidden -->
     <div id="previewing">
-      <p id="previewing-message">Preview your file.</p>
+        <p id="previewing message">Preview your files.</p>
     </div>
     <button type="submit">Add Product</button>
   </form>
@@ -57,17 +50,19 @@
   <button onclick="logout()">Logout</button>
 </div>
 
+<!-- Include the image database and drag-and-drop scripts -->
+<script src="database.js"></script>
+<script src="drag-and-drop-script.js"></script>
+
 <script>
+  // Vendor dashboard logic
   let db;
   const userEmail = localStorage.getItem("loggedInUser");
-  // Global variable to store the image data from drag-and-drop
-  let currentProductImage = null;
-
   if (!userEmail) {
-    window.location.href = "index.html";
+    window.location.href = "login.html";
   }
-
-  // Open or create the IndexedDB database
+  
+  // Open the IndexedDB and load vendor info
   const request = indexedDB.open("UserDB", 2);
   request.onsuccess = function (event) {
     db = event.target.result;
@@ -89,7 +84,7 @@
     };
   }
 
-  // Save vendor info to IndexedDB
+  // Save vendor info
   document.getElementById("vendor-form").addEventListener("submit", function (e) {
     e.preventDefault();
     const name = document.getElementById("vendor-name").value.trim();
@@ -102,73 +97,62 @@
     document.getElementById("message").textContent = "Vendor info saved!";
   });
 
-  // Drag and drop functionality for image upload
-  const landing = document.getElementById("landing");
-  const previewing = document.getElementById("previewing");
+  // Global variable to hold the current dragged image data (if any)
+  let currentProductImage = null;
 
-  // Prevent default behaviors for drag events
-  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    landing.addEventListener(eventName, preventDefaults, false);
-  });
-  
-  function preventDefaults(e) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  landing.addEventListener("dragover", () => {
-    landing.style.background = "#e8e8e8";
-  });
-
-  landing.addEventListener("dragleave", () => {
-    landing.style.background = "";
-  });
-
-  landing.addEventListener("drop", handleDrop, false);
-
-  function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
+  // Modify the drop handler from drag-and-drop-script.js to capture image for product
+  // (Note: The original drag-and-drop-script.js already binds to #landing and #previewing.)
+  // Here we override the fileDrop function to store the image in `currentProductImage`
+  const originalFileDrop = fileDrop;
+  fileDrop = function(event) {
+    let counter = 0;
+    event.preventDefault(); 
+    const files = event.dataTransfer.files;
     if (files.length === 0) return;
+    file_input.files = files;
+
+    // Clear previewing area for a new set
+    document.getElementById("previewing").innerHTML = '';
     
-    // Process the first file (you can extend this for multiple files if needed)
+    // For this implementation, we use the first file for the product image
     const file = files[0];
     if (!isValidFileType(file)) {
       alert("Only PNG and JPEG images are supported.");
       return;
     }
-    
     const reader = new FileReader();
-    reader.onload = function () {
+    reader.onload = function() {
       currentProductImage = reader.result;
-      previewing.innerHTML = "";
-      const img = document.createElement("img");
+      // Display the preview using your existing preview method
+      document.getElementById("previewing").innerHTML = '';
+      const img = document.createElement('img');
       img.src = currentProductImage;
-      previewing.appendChild(img);
+      document.getElementById("previewing").appendChild(img);
     };
     reader.readAsDataURL(file);
-  }
+    
+    // Optionally, if you want to still upload the file to your indexedDB storage:
+    idb.uploadImage(file).then(() => {
+      console.log("File uploaded to indexedDB");
+    }).catch(() => {
+      console.log("Upload error (might be duplicate)");
+    });
+  };
 
-  function isValidFileType(file) {
-    return file.type === "image/png" || file.type === "image/jpeg";
-  }
-
-  // Handle product form submission using the uploaded image via drag and drop
+  // Submit product using the dragged image
   document.getElementById("product-form").addEventListener("submit", function (e) {
     e.preventDefault();
-
     const productName = document.getElementById("product-name").value.trim();
     const productPrice = parseFloat(document.getElementById("product-price").value);
     
     if (!productName || isNaN(productPrice) || !currentProductImage) {
-      alert("Please fill in all fields and upload a product image using drag and drop.");
+      alert("Please fill in all fields and drag an image into the drop area.");
       return;
     }
-
+    
     const tx = db.transaction(["vendors"], "readwrite");
     const store = tx.objectStore("vendors");
     const getRequest = store.get(userEmail);
-
     getRequest.onsuccess = function () {
       const data = getRequest.result;
       if (data) {
@@ -181,12 +165,11 @@
         };
         data.products.push(newProduct);
         store.put(data);
-
         document.getElementById("product-form").reset();
         loadProductList(data.products);
-        // Reset drag and drop area for the next image upload
+        // Reset the drop and preview areas for the next product
         currentProductImage = null;
-        previewing.innerHTML = '<p id="previewing-message">Preview your file.</p>';
+        document.getElementById("previewing").innerHTML = '<p id="previewing-message">Preview your files.</p>';
       }
     };
   });
@@ -206,7 +189,7 @@
 
   function logout() {
     localStorage.removeItem("loggedInUser");
-    window.location.href = "index.html";
+    window.location.href = "login.html";
   }
 </script>
 
