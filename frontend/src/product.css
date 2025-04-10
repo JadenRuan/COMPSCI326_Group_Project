@@ -5,7 +5,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.header{
+.product-header{
     background-color: darkgreen;
     width: 100%;
     text-align: center;
@@ -35,7 +35,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 25px;
     padding: 20px 40px;
     width: 100%;
@@ -43,16 +43,17 @@
 }
 
 .tile{
-    flex: 0 0 calc(25% - 25px);
-    max-width: 25%;
+    flex: 0 0 calc(33.33% - 25px);
+    max-width: 30%;
     min-width: 250px;
     align-items: center;
     padding: 30px;
     background-color: rgb(244, 238, 238);
     flex-direction: column;
-    align-items: center;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: large;
+    margin: 10px;
 }
 
 .tile img{
@@ -69,4 +70,39 @@
     margin-left: 40px;
     margin-right: 40px;
     border-radius: 20px;   
+}
+
+.add{
+    font-size: medium;
+    float: left;
+    padding: 8px;
+}
+
+.remove{
+    font-size: medium;
+    float: right;
+    padding: 8px;
+}
+
+.search-bar{
+    width: 85%;
+    padding: 10px;
+    margin: 10px 50px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: large;
+}
+.search-bar:focus{
+    outline: none;
+    border-color: darkgreen;
+}
+
+.search-button{
+    padding: 10px 20px;
+    background-color: rgb(221, 218, 218);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: large;
 }
