@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="./drag-and-drop.css" rel="stylesheet">
+    
+    <title>File Drag and Drop</title>
+</head>
+<body>
+
+    <h1>Upload Your Images</h1>
+    <p>Only PNG and JPEG images supported.</p>
+
+    <div id="landing">
+        <p id="landing-message">Drag your file here. Images only.</p>
+    </div>
+    <input type="file" id="file-input" multiple hidden> 
+    <!-- control ux by keeping file upload button hidden -->
+    <div id="previewing">
+        <p id="previewing message">Preview your files.</p>
+    </div>
+
+    <script type="module" src="drag-and-drop-script.js"></script>
+    <script type="module" src="database.js"></script>
+</body>
+</html>
