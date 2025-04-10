@@ -4,7 +4,6 @@ body {
     align-content: center;
     justify-content: center;
     padding: 2rem;
-    border: solid;
 }
 
 
@@ -18,7 +17,7 @@ body {
     justify-content: center;
     align-content: center;
 
-    margin: 1rem;
+    margin-bottom: 1rem;
 
 }
 
@@ -32,33 +31,38 @@ body {
     justify-content: center;
     align-content: center;
 
-    margin: 1rem;
+    margin-top: 1rem;
     color: white;
 
+    font-size: 140%;
 }
 
 #landing:hover {
-    background-color: lightcoral;
+    background-color: rgb(203, 155, 155);
 }
 
 #landing.in-landing-zone {
-    background-color:forestgreen;
+    background-color:rgb(210, 238, 247);
 }
 
 #landing.already-dragged-file:hover {
-    background-color: darkgreen;
+    background-color: rgb(149, 188, 201);
 }
 
 
-p {
-    font-size: 100%;
+#landing > p, #previewing > p {
+    font-size: 140%;
     color: white;
     margin: 1rem;
 }
 
 #previewing.has-image {
-   background-color: red;
-   display:block;
+    background-color: lightgray;
+    display:block;
+    font-size: 140%;
+    color: white;
+
+    /* display:grid; */
 }
 
 #previewing > img {
@@ -73,5 +77,10 @@ body > p {
     color: black;
     margin-left: 0px;
     margin-top: 0px;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.25rem;
+}
+
+body > h1 {
+    font-size: 2rem;
 }

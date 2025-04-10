@@ -108,6 +108,7 @@ const landing = document.getElementById("landing");
 const file_input = document.getElementById("file-input");
 const idb = new ImageDatabase("idb");
 const previewing = document.getElementById('previewing');
+const previewing_message = document.getElementById('previewing-message');
 let flag = true;
 
 // prevent default behaviors
@@ -146,6 +147,7 @@ const changeTextAfterHover = () => { // message not during hover
 
 
 
+const prev_added = [];
 
 const fileDrop =  (event) => {
     let counter = 0;
@@ -162,7 +164,7 @@ const fileDrop =  (event) => {
     
 
     if (flag) {
-        previewing.innerHTML = "Add more files?";
+        previewing.innerHTML = '';
         flag = false;
     } 
 
@@ -176,19 +178,24 @@ const fileDrop =  (event) => {
             const prev_img = document.createElement('img');
             if (isValidFileType(f)) {
                 prev_img.src = event.target.result;
+                // previewFiles();
             } else {
                 return;
             }
 
+            prev_added.push(prev_img);
 
-            idb.uploadImage(f).then(() => {
-                previewing.classList.add('has-image');
-                previewing.appendChild(prev_img);
-
-            }).catch(() => {
-                previewing.innerHTML = "already in db"
-                console.log("caught promise");
+            idb.uploadImage(f).then(() => { 
                 previewFiles();
+                
+            }).catch(() => {
+                if (!prev_added.includes(prev_img)) {
+                    previewing.classList.add('has-image');
+                    previewing.appendChild(prev_img);
+                } else {
+                    previewing.textContent = "Already in database."
+                } 
+
             })
                     
         }
