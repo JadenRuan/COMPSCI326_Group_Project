@@ -176,15 +176,19 @@ const fileDrop =  (event) => {
             const prev_img = document.createElement('img');
             if (isValidFileType(f)) {
                 prev_img.src = event.target.result;
+            } else {
+                return;
             }
 
 
             idb.uploadImage(f).then(() => {
                 previewing.classList.add('has-image');
                 previewing.appendChild(prev_img);
+
             }).catch(() => {
                 previewing.innerHTML = "already in db"
                 console.log("caught promise");
+                previewFiles();
             })
                     
         }
@@ -193,27 +197,28 @@ const fileDrop =  (event) => {
 
 }
 
-// const previewFiles = async () => {
-//     const files = await idb.getImages();
-//     previewing.innerHTML = '';
-//     console.log("number of files:", files.length);
-//     files.forEach((f)=> {
+const previewFiles = async () => {
+    const files = await idb.getImages();
+    previewing.innerHTML = '';
+    previewing.classList.add('has-image');
+    console.log("number of files:", files.length);
+    files.forEach((f)=> {
 
-//         if (f.size !== -1) {
+        if (f.size !== -1) {
 
-//             const prev_img = document.createElement('img');
-//             const b = new Blob([f.data], {type: f.type});
-//             const img_url = URL.createObjectURL(b);
-//             prev_img.src = img_url;
-//             prev_img.onload = () => {
-//                 URL.revokeObjectURL(img_url);
-//             }
+            const prev_img = document.createElement('img');
+            const b = new Blob([f.data], {type: f.type});
+            const img_url = URL.createObjectURL(b);
+            prev_img.src = img_url;
+            prev_img.onload = () => {
+                URL.revokeObjectURL(img_url);
+            }
 
 
-//             previewing.appendChild(prev_img);
-//         }
-//     })  
-// }
+            previewing.appendChild(prev_img);
+        }
+    })  
+}
 
 const isValidFileType = (f) => { 
     if (f.type == "image/jpeg" || f.type == "image/png") {
