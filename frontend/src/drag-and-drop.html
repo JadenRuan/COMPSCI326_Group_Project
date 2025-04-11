@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="./drag-and-drop.css" rel="stylesheet">
     <link href="./home.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    <title>About Us</title>
+    
+    <title>File Drag and Drop</title>
 </head>
 <body>
+
     <header>
 
         <div class="navigation-bar">
@@ -25,26 +29,21 @@
         </div> 
     </header>
 
-    <img class="hero-image" src="../images/hero-about-us.jpg">
-    <h1 class="about-heading">What We're All About</h1>
-    <p>
-        Welcome to the UMass Amherst Student Farmer’s Market! Organized by UMass Permaculture and UMass Students Farms, 
-        the UMass Farmer’s Market give UMass students and faculty alike a place to find handmade goods, freshly grown 
-        produce, medicinal herbs, and even live music. 
-    </p>
+    <main>
+        <h1>Upload Your Images</h1>
+        <p>Only PNG and JPEG images supported.</p>
 
-    <p>
-        The goal of this website is to provide you with all relevant information surrounding the market: when it will take 
-        place, what vendors are going to be there, and what products you can find. We work closely with participating students 
-        to display accurate and updated information that you can use to determine who will be there and what you might like 
-        to purchase. 
-    </p>
-      
-    <p>
-        You can find the different goods you can buy on the products page and see who is going to be there on our vendors page. 
-        You can even create an account to save favorited products and vendors, using the My Account page.
-    </p>
+        <div id="landing">
+            <p id="landing-message">Drag your file here. Images only.</p>
+        </div>
+        <input type="file" id="file-input" multiple hidden> 
+        <!-- control ux by keeping file upload button hidden -->
+        <div id="previewing">
+            <p id="previewing message">Preview your files.</p>
+        </div>
 
-
+        <script type="module" src="drag-and-drop-script.js"></script>
+        <script type="module" src="database.js"></script>
+    </main>
 </body>
 </html>
