@@ -101,9 +101,6 @@ class ImageDatabase {
 
 
 
-
-
-
 const landing = document.getElementById("landing");
 const file_input = document.getElementById("file-input");
 const idb = new ImageDatabase("idb");
@@ -137,13 +134,6 @@ const changeTextDuringHover = () => { // message during hover
 const changeTextAfterHover = () => { // message not during hover
     document.getElementById('landing-message').innerHTML = "Drag your files here!"
 }
-
-// const changeTextOnReupload = () => {
-//     if (!flag) {
-//         document.getElementById('previewing').innerHTML = "Already in database."
-//         console.log("change text on reupload");
-//     }   
-// }
 
 
 
