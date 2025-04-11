@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration</title>
+  <style>
+    /* Basic styling */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #27ae60;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    form label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      transition: transform 0.2s;
+    }
+    form input:hover,
+    form textarea:hover {
+      transform: scale(1.03);
+    }
+    form textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    .form-step {
+      display: none;
+    }
+    .form-step.active {
+      display: block;
+    }
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+    }
+    .button-group button {
+      background: #27ae60;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .button-group button:hover {
+      background: #219150;
+      transform: scale(1.05);
+    }
+    #reviewData p {
+      background: #efefef;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    #message {
+      text-align: center;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #27ae60;
+      color: #fff;
+    }
+    .account-type-choice {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 1.5em 0;
+    }
+    .account-btn {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      border-radius: 4px;
+      cursor: pointer;
+      flex: 1 1 200px;
+      max-width: 300px;
+    }
+    .account-btn:hover,
+    .account-btn:focus {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Registration</h1>
+    <p>Create your account below.</p>
+  </header>
+
+  <div class="form-container">
+    <form id="registrationForm">
+      <!-- Step 1: Account Type Selection -->
+      <div id="step1" class="form-step active">
+        <h2>Are you a vendor or a user?</h2>
+        <div class="account-type-choice">
+          <button type="button" id="chooseVendor" class="account-btn">Vendor</button>
+          <button type="button" id="chooseUser" class="account-btn">User</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Enter Details -->
+      <div id="step2" class="form-step">
+        <h2>Enter Your Details</h2>
+        <!-- Vendor Fields -->
+        <div id="vendorFields" style="display: none;">
+          <label for="businessName">Business Name</label>
+          <input type="text" id="businessName" name="businessName">
+          <label for="contact">Contact</label>
+          <input type="text" id="contact" name="contact">
+          <label for="operatingHours">Operating Hours</label>
+          <input type="text" id="operatingHours" name="operatingHours">
+        </div>
+        <!-- User Fields -->
+        <div id="userFields" style="display: none;">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName">
+        </div>
+        <div class="button-group">
+          <button type="button" id="backToStep1">Back</button>
+          <button type="button" id="toStep3">Next</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review & Submit -->
+      <div id="step3" class="form-step">
+        <h2>Review &amp; Submit</h2>
+        <div id="reviewData"></div>
+        <div class="button-group">
+          <button type="button" id="backToStep2">Back</button>
+          <button type="submit" id="submitBtn">Submit</button>
+        </div>
+      </div>
+    </form>
+    <div id="message"></div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Farmers Market. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Initialize IndexedDB
+    let db;
+    const dbReq = indexedDB.open("RegistrationDB", 2);
+    dbReq.onerror = function(e) {
+      console.error("IndexedDB error:", e.target.errorCode);
+    };
+    dbReq.onsuccess = function(e) {
+      db = e.target.result;
+    };
+    dbReq.onupgradeneeded = function(e) {
+      db = e.target.result;
+      if (!db.objectStoreNames.contains("progress")) {
+        db.createObjectStore("progress", { keyPath: "id" });
+      }
+      if (!db.objectStoreNames.contains("users")) {
+        db.createObjectStore("users", { keyPath: "email" });
+      }
+      if (!db.objectStoreNames.contains("vendors")) {
+        db.createObjectStore("vendors", { keyPath: "id", autoIncrement: true });
+      }
+    };
+
+    // Function to save form progress to IndexedDB
+    function saveProgress(step, data) {
+      if (!db) return;
+      const tx = db.transaction(["progress"], "readwrite");
+      const store = tx.objectStore("progress");
+      store.put({ id: step, data, timestamp: new Date() });
+    }
+
+    // Basic validation functions
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+    function validatePassword(pwd) {
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#_])[A-Za-z\d@$!%*?&#_]{8,}$/.test(pwd);
+    }
+
+    // Multi-step form handling with dynamic "required" assignment
+    document.addEventListener("DOMContentLoaded", function() {
+      const step1 = document.getElementById("step1");
+      const step2 = document.getElementById("step2");
+      const step3 = document.getElementById("step3");
+      const backToStep1 = document.getElementById("backToStep1");
+      const nextStep = document.getElementById("toStep3");
+      const backToStep2 = document.getElementById("backToStep2");
+      const form = document.getElementById("registrationForm");
+      const msg = document.getElementById("message");
+      const vendorFields = document.getElementById("vendorFields");
+      const userFields = document.getElementById("userFields");
+      const reviewDiv = document.getElementById("reviewData");
+      let formData = {};
+
+      // When choosing vendor, dynamically set required fields
+      document.getElementById("chooseVendor").addEventListener("click", function() {
+        formData.accountType = "vendor";
+        vendorFields.style.display = "block";
+        userFields.style.display = "none";
+
+        document.getElementById("businessName").setAttribute("required", "required");
+        document.getElementById("contact").setAttribute("required", "required");
+        document.getElementById("operatingHours").setAttribute("required", "required");
+
+        document.getElementById("email").removeAttribute("required");
+        document.getElementById("password").removeAttribute("required");
+        document.getElementById("firstName").removeAttribute("required");
+        document.getElementById("lastName").removeAttribute("required");
+
+        step1.classList.remove("active");
+        step2.classList.add("active");
+        saveProgress("step1", { accountType: formData.accountType });
+      });
+
+      // When choosing user, dynamically set required fields
+      document.getElementById("chooseUser").addEventListener("click", function() {
+        formData.accountType = "user";
+        vendorFields.style.display = "none";
+        userFields.style.display = "block";
+
+        document.getElementById("email").setAttribute("required", "required");
+        document.getElementById("password").setAttribute("required", "required");
+        document.getElementById("firstName").setAttribute("required", "required");
+        document.getElementById("lastName").setAttribute("required", "required");
+
+        document.getElementById("businessName").removeAttribute("required");
+        document.getElementById("contact").removeAttribute("required");
+        document.getElementById("operatingHours").removeAttribute("required");
+
+        step1.classList.remove("active");
+        step2.classList.add("active");
+        saveProgress("step1", { accountType: formData.accountType });
+      });
+
+      // Back to account selection
+      backToStep1.addEventListener("click", function() {
+        step2.classList.remove("active");
+        step1.classList.add("active");
+      });
+
+      // Validate and proceed to review
+      nextStep.addEventListener("click", function() {
+        let valid = true;
+        let data = {};
+        if (formData.accountType === "vendor") {
+          const businessName = document.getElementById("businessName").value.trim();
+          const contact = document.getElementById("contact").value.trim();
+          const operatingHours = document.getElementById("operatingHours").value.trim();
+          if (!businessName || !contact || !operatingHours) valid = false;
+          data = { businessName, contact, operatingHours };
+        } else {
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value.trim();
+          const firstName = document.getElementById("firstName").value.trim();
+          const lastName = document.getElementById("lastName").value.trim();
+          if (!email || !password || !firstName || !lastName) valid = false;
+          if (!validateEmail(email)) {
+            alert("Enter a valid email address.");
+            return;
+          }
+          if (!validatePassword(password)) {
+            alert("Password must have at least 8 characters, uppercase, lowercase, a number, and a special character.");
+            return;
+          }
+          data = { email, password, firstName, lastName };
+        }
+        if (!valid) {
+          alert("Please fill in all required fields.");
+          return;
+        }
+        formData = { ...formData, ...data };
+        saveProgress("step2", data);
+
+        // Populate review details
+        reviewDiv.innerHTML = "";
+        for (let key in formData) {
+          reviewDiv.innerHTML += `<p><strong>${key}:</strong> ${formData[key]}</p>`;
+        }
+        step2.classList.remove("active");
+        step3.classList.add("active");
+      });
+
+      // Back from review to details
+      backToStep2.addEventListener("click", function() {
+        step3.classList.remove("active");
+        step2.classList.add("active");
+      });
+
+      // Final submission: Save to IndexedDB and localStorage, then redirect to home.html
+      form.addEventListener("submit", function(e) {
+        console.log("Submit event triggered.");
+        e.preventDefault();
+        saveProgress("step3", formData);
+
+        if (!db) {
+          console.error("Database connection is not ready.");
+          alert("Database is still loading, please try again shortly.");
+          return;
+        }
+
+        if (formData.accountType === "vendor") {
+          localStorage.setItem("vendorData", JSON.stringify(formData));
+          const tx = db.transaction(["vendors"], "readwrite");
+          const store = tx.objectStore("vendors");
+          const req = store.add(formData);
+          req.onsuccess = function() {
+            msg.innerHTML = `<p style="color: green;">Vendor registration successful!</p>`;
+            setTimeout(() => {
+              window.location.href = "home.html";
+            }, 2000);
+          };
+          req.onerror = function() {
+            msg.innerHTML = `<p style="color: red;">Error saving vendor registration!</p>`;
+          };
+        } else {
+          localStorage.setItem("userData", JSON.stringify(formData));
+          const tx = db.transaction(["users"], "readwrite");
+          const store = tx.objectStore("users");
+          const req = store.add(formData);
+          req.onsuccess = function() {
+            msg.innerHTML = `<p style="color: green;">User registration successful!</p>`;
+            setTimeout(() => {
+              window.location.href = "home.html";
+            }, 2000);
+          };
+          req.onerror = function() {
+            msg.innerHTML = `<p style="color: red;">Error saving user registration!</p>`;
+          };
+        }
+      });
+    });
+  </script>
+</body>
+</html>
