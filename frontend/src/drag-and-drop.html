@@ -5,24 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="./drag-and-drop.css" rel="stylesheet">
+    <link href="./home.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     
     <title>File Drag and Drop</title>
 </head>
 <body>
 
-    <h1>Upload Your Images</h1>
-    <p>Only PNG and JPEG images supported.</p>
+    <header>
 
-    <div id="landing">
-        <p id="landing-message">Drag your file here. Images only.</p>
-    </div>
-    <input type="file" id="file-input" multiple hidden> 
-    <!-- control ux by keeping file upload button hidden -->
-    <div id="previewing">
-        <p id="previewing message">Preview your files.</p>
-    </div>
+        <div class="navigation-bar">
+            <div class="nav-logo"><a href="./home.html"><img src="../images/logo.png"></a></div>
+            <div class="nav-home"><a href="./home.html">Home</a></div>
+            <div class="nav-about-us"><a href="./about-us.html">About Us</a></div>
+            <div class="nav-vendors"><a href="./vendors.html">Vendors</a></div>
+            <div class="nav-products"><a href="./product.html">Products</a></div>
+            <div class="nav-upload-images"><a href="./drag-and-drop.html">Upload Images</a></div>
+            <div class="nav-spacer"></div>
+            <div class="nav-my-account"><a href="./vendorMgmt.html">My Account</a></div>
+        </div> 
+    </header>
 
-    <script type="module" src="drag-and-drop-script.js"></script>
-    <script type="module" src="database.js"></script>
+    <main>
+        <h1>Upload Your Images</h1>
+        <p>Only PNG and JPEG images supported.</p>
+
+        <div id="landing">
+            <p id="landing-message">Drag your file here. Images only.</p>
+        </div>
+        <input type="file" id="file-input" multiple hidden> 
+        <!-- control ux by keeping file upload button hidden -->
+        <div id="previewing">
+            <p id="previewing message">Preview your files.</p>
+        </div>
+
+        <script type="module" src="drag-and-drop-script.js"></script>
+        <script type="module" src="database.js"></script>
+    </main>
 </body>
 </html>
