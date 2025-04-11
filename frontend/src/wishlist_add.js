@@ -25,8 +25,6 @@ function addToWishlist(prodId) {
     const transaction = db.transaction(["items"], "readwrite");
     const store = transaction.objectStore("items");
 
-    store.clear(); // Clear the store before adding new items
-
     const prod = {
         id: prodId,
         name: document.querySelector(".prod-name").textContent,
