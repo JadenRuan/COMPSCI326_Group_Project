@@ -10,10 +10,10 @@ Solution: We want to create a platform that contains relevant information about 
 
 
 Key Features:
-- Subtabs for vendors to describe their products and availability. This will allow vendors to promote their products and inform students about what products they can purchase.
-- Reviews section to comment on different vendors and their products. This will allow vendors to get feedback and see which products did well versus ones that did not as well and be able to restock accordingly.
-- Homepage for visitors to browse vendors and their products. This will allow visitors to see a catalog of vendors and explore any they are interested in.
-
+- Subtabs for vendors to describe their goods and availability. This will allow users to see what products they can buy.
+- File drag-and-drop UI for image uploads. This will allow users to easily upload images (profile picture, product images).
+- Multi-step account creation with user feedback. This will guide the user through creating their account.
+- Wishlist for the products a user wants to bookmark. This will allow users to save their desired products, improving the UX.
 
 Team Member List:
 
