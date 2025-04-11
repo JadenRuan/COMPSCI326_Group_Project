@@ -137,11 +137,11 @@ header a:not(.nav-logo > a):hover {
 
 
 /* .product-header{
-    background-color: darkgreen;
+    background-color: #cbd4c6;
     width: 100%;
     text-align: center;
-    padding: 100px 40px;
-    color: white;
+    padding: 50px 40px;
+    color: black;
     font-size: x-large;
     font-weight: bold;
        
