@@ -13,6 +13,8 @@ Key Features:
 - Subtabs for vendors to describe their products and availability. This will allow vendors to promote their products and inform students about what products they can purchase.
 - Reviews section to comment on different vendors and their products. This will allow vendors to get feedback and see which products did well versus ones that did not as well and be able to restock accordingly.
 - Homepage for visitors to browse vendors and their products. This will allow visitors to see a catalog of vendors and explore any they are interested in.
+- Search bar for the products page so that users. This will allow users to search for products rather than having to scroll through the list
+- Wishlist page to keep track of products that a user wants to see. This will allow users to see all the products they would like to see at the farmer's market on one page
 
 
 Team Member List:
