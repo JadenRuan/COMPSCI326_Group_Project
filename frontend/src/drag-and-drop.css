@@ -8,8 +8,6 @@ main {
     margin: 2rem;
 }
 
-
-
 #landing {
     display: grid;
     background-color: lightblue;
@@ -64,8 +62,6 @@ main {
     display:block;
     font-size: 140%;
     color: white;
-
-    /* display:grid; */
 }
 
 #previewing > img {
@@ -75,18 +71,6 @@ main {
     margin: 0px;
     display: inline;
 }
-
-/* main > p {
-    color: black;
-    margin-left: 0px;
-    margin-top: 0px;
-    margin-bottom: 2.5rem;
-    font-size: 1.25rem;
-}
-
-main > h1 {
-    font-size: 2rem;
-} */
 
 main > p {
     color: black;
@@ -100,5 +84,4 @@ main > h1 {
     margin: 0px;
     padding: 0px;
     padding-bottom: 0.5rem;
-    /* padding-bottom: 0.5rem; */
 }

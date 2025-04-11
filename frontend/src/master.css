@@ -3,16 +3,21 @@ body {
     background-color: #cbd4c6;
 }
 
-/* NAVBAR */
+/* HOME PAGE */
 
-#home {
-    display: none;
-}
+/* #home { display: none; } */
+
+
+/* NAVBAR */
 
 .navigation-bar {
     display: grid;
+
     grid-template-rows: 75px 50px;
-    grid-template-columns: 125px min-content min-content min-content min-content 0.75fr 2fr min-content;
+    grid-template-columns: 125px auto auto auto auto auto 1fr auto;
+
+    grid-column-gap: 1rem;
+
     margin-left: 1rem;
     margin-right: 1rem;
 }
@@ -28,69 +33,56 @@ body {
     vertical-align: bottom;
 }
 
-.nav-home {
-    grid-row: 2/3;
-    grid-column: 2/3;
+.nav-home, .nav-about-us, .nav-vendors, .nav-products, .nav-upload-images, .nav-my-account{
+    background-color: #b4bfb3;
+
+    font-size: 1.5rem;
+    font-family: "Manrope", sans-serif;
+
+    border: none;
+    border-radius: 10px;
+
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 
     display: grid;
     align-content: center;
     justify-content: center;
-    
-    padding-left: 1rem;
-    padding-right: 1rem;
+}
+
+.nav-home:hover, .nav-about-us:hover, .nav-vendors:hover, .nav-products:hover, .nav-upload-images:hover, .nav-my-account:hover {
+    background-color: #a2aca1;
+}
+
+
+.nav-home {
+    grid-row: 2/3;
+    grid-column: 2/3;
 }
 
 .nav-about-us {
     grid-row: 2/3;
     grid-column: 3/4;
-
-    display: grid;
-    align-content: center;
-    justify-content: center;
-    white-space: nowrap;
-
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .nav-vendors {
     grid-row: 2/3;
     grid-column: 4/5;
-
-    display: grid;
-    align-content: center;
-    justify-content: center;
-
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .nav-products {
     grid-row: 2/3;
     grid-column: 5/6;
-
-    display: grid;
-    align-content: center;
-    justify-content: center;
-
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .nav-upload-images {
     grid-row: 2/3;
     grid-column: 6/7;
-
-    display: grid;
-    align-content: center;
-    justify-content: center;
-
 }
 
 .nav-spacer {
     grid-row: 2/3;
     grid-column: 7/8;
-    /* background-color: linen; */
 
     display: grid;
     align-content: center;
@@ -100,15 +92,6 @@ body {
 .nav-my-account {
     grid-row: 2/3;
     grid-column: 8/9;
-    /* background-color: lightseagreen; */
-
-    display: grid;
-    align-content: center;
-    justify-content: center;
-    white-space: nowrap;
-
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 .hero-image {
