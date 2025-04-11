@@ -5,9 +5,6 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-<<<<<<< HEAD
-.header{
-=======
 body {
     margin: 0px;
     background-color: #cbd4c6;
@@ -140,7 +137,6 @@ header a:not(.nav-logo > a):hover {
 
 
 /* .product-header{
->>>>>>> 3359e6d14ca63e2dd0149e143ebb4c7fa828209f
     background-color: darkgreen;
     width: 100%;
     text-align: center;
@@ -149,11 +145,7 @@ header a:not(.nav-logo > a):hover {
     font-size: x-large;
     font-weight: bold;
        
-<<<<<<< HEAD
-}
-=======
 } */
->>>>>>> 3359e6d14ca63e2dd0149e143ebb4c7fa828209f
 
 .footer{
     background-color: darkgreen;
@@ -174,11 +166,7 @@ header a:not(.nav-logo > a):hover {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-<<<<<<< HEAD
-    justify-content: space-between;
-=======
     justify-content: flex-start;
->>>>>>> 3359e6d14ca63e2dd0149e143ebb4c7fa828209f
     gap: 25px;
     padding: 20px 40px;
     width: 100%;
@@ -186,28 +174,17 @@ header a:not(.nav-logo > a):hover {
 }
 
 .tile{
-<<<<<<< HEAD
-    flex: 0 0 calc(25% - 25px);
-    max-width: 25%;
-=======
     flex: 0 0 calc(33.33% - 25px);
     max-width: 30%;
->>>>>>> 3359e6d14ca63e2dd0149e143ebb4c7fa828209f
     min-width: 250px;
     align-items: center;
     padding: 30px;
     background-color: rgb(244, 238, 238);
     flex-direction: column;
-<<<<<<< HEAD
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-=======
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-size: large;
     margin: 10px;
->>>>>>> 3359e6d14ca63e2dd0149e143ebb4c7fa828209f
 }
 
 .tile img{
@@ -224,8 +201,6 @@ header a:not(.nav-logo > a):hover {
     margin-left: 40px;
     margin-right: 40px;
     border-radius: 20px;   
-<<<<<<< HEAD
-=======
 }
 
 .add{
@@ -261,5 +236,4 @@ header a:not(.nav-logo > a):hover {
     border-radius: 5px;
     cursor: pointer;
     font-size: large;
->>>>>>> 3359e6d14ca63e2dd0149e143ebb4c7fa828209f
 }
