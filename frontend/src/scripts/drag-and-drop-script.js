@@ -151,8 +151,6 @@ const fileDrop =  (event) => {
         file_input.files = files; // store files in box
     }
 
-    
-
     if (flag) {
         previewing.innerHTML = '';
         flag = false;
@@ -210,7 +208,6 @@ const previewFiles = async () => {
             prev_img.onload = () => {
                 URL.revokeObjectURL(img_url);
             }
-
 
             previewing.appendChild(prev_img);
         }
