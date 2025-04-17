@@ -1,0 +1,87 @@
+main {
+    background-color: azure;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    
+    padding: 2rem;
+    margin: 2rem;
+}
+
+#landing {
+    display: grid;
+    background-color: lightblue;
+
+    width: 75vh;
+    height: 25vh;
+
+    justify-content: center;
+    align-content: center;
+
+    margin-bottom: 1rem;
+
+}
+
+#previewing {
+    display: grid;
+    background-color: cornflowerblue;
+
+    width: 75vh;
+    height: 25vh;
+
+    justify-content: center;
+    align-content: center;
+
+    margin-top: 1rem;
+    color: white;
+
+    font-size: 140%;
+}
+
+#landing:hover {
+    background-color: rgb(203, 155, 155);
+}
+
+#landing.in-landing-zone {
+    background-color:rgb(210, 238, 247);
+}
+
+#landing.already-dragged-file:hover {
+    background-color: rgb(149, 188, 201);
+}
+
+
+#landing > p, #previewing > p {
+    font-size: 140%;
+    color: white;
+    margin: 1rem;
+}
+
+#previewing.has-image {
+    background-color: lightgray;
+    display:block;
+    font-size: 140%;
+    color: white;
+}
+
+#previewing > img {
+    height: 25vh;
+    width: 25vh;
+    object-fit: cover;
+    margin: 0px;
+    display: inline;
+}
+
+main > p {
+    color: black;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 1rem;
+}
+
+main > h1 {
+    color: black;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 0.5rem;
+}
