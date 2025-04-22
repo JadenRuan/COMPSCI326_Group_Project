@@ -1,5 +1,5 @@
 import express from "express";
-import FileDragAndDropRoutes from '../routes/file-drag-and-drop-routes.js'; 
+import DraggedImageRoutes from '../route/DraggedImageRoutes.js'; 
 
 class Server {
     constructor() {
@@ -16,7 +16,7 @@ class Server {
    
     setupRoutes() {
         console.log("Setting up routes...");
-        this.app.use("/v1", FileDragAndDropRoutes);
+        this.app.use("/api", DraggedImageRoutes);
     }
 
     start(port = 3000) {
