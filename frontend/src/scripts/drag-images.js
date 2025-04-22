@@ -6,7 +6,7 @@ const landing_zone = document.getElementById("landing-zone");
 const previewing_zone = document.getElementById("previewing-zone")
 const file_input = document.getElementById("file-input");
 
-const LOCAL_FILES = []; // store files locally before user uploads them
+let LOCAL_FILES = []; // store files locally before user uploads them
 
 function preventDefaultBehavior(event) {
     event.preventDefault();
@@ -108,8 +108,10 @@ post_button.addEventListener("click", async () => {
             body: JSON.stringify(body)
         });
     })
-    
 
+    LOCAL_FILES = []; // remove after saving
+    previewLocalFiles();
+    previewing_zone.innerText = "Preview your images here.";
 
 })
 
