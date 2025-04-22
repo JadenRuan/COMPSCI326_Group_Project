@@ -19,7 +19,7 @@ class _InMemoryDraggedImageModel {
     }
 
     async delete(draggedImage = null) {
-        if (task === null) {
+        if (draggedImage === null) {
             this.draggedImages = [];
             return;
         }

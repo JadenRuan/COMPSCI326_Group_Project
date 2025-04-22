@@ -34,9 +34,13 @@ class DraggedImageController {
     }
 
     async removeDraggedImage(req, res) {
-        await console.log("DELETE in controller")
+        await this.model.delete();
+        // res.json(await this.model.read());
+        res.status(201).json(await this.model.read());
     }
 
 }
+
+
 
 export default new DraggedImageController();

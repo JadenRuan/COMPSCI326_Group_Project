@@ -181,6 +181,9 @@ delete_button.addEventListener("click", async () => {
         headers: {
             'Content-Type': 'application/json'
         }
-    })
+    });
+
+    displaying_zone.innerText = "Deleted all images."    
+
 })
 
