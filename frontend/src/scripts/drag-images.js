@@ -1,5 +1,6 @@
 const get_button = document.getElementById("get-button");
 const post_button = document.getElementById("post-button");
+const delete_button = document.getElementById("delete-button")
 
 const landing_zone = document.getElementById("landing-zone");
 const previewing_zone = document.getElementById("previewing-zone")
@@ -37,13 +38,16 @@ landing_zone.addEventListener('drop', async (event) => {
                 name: file.name,
                 type: file.type
             }
-        
-            LOCAL_FILES.push(draggedImageObject);
-            counter += 1;
 
-            // console.log(counter, LOCAL_FILES.length);
+        
+            if (LOCAL_FILES.findIndex(img => img.name === file.name) === -1) {
+                
+                LOCAL_FILES.push(draggedImageObject);
+            }
+
+            counter += 1; // move onto next image
+
             if (counter === totalFiles) {
-                console.log("same");
                 previewLocalFiles();
             }
         }
@@ -54,6 +58,9 @@ landing_zone.addEventListener('drop', async (event) => {
 
 function previewLocalFiles() {
     previewing_zone.innerHTML = ''; // remove previous
+
+
+    console.log(LOCAL_FILES);
 
     LOCAL_FILES.forEach((fileObject) => {
         const preview = document.createElement("img");
@@ -83,13 +90,35 @@ get_button.addEventListener("click", async () => {
 
 post_button.addEventListener("click", async () => {
 
-    const bodyData = { data: "example data"}; // replace with image data 
+    LOCAL_FILES.forEach(async fileObject => {
 
-    const data = await fetch("/api/dragged-images", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify(bodyData)
-    });
+        const array = new Uint8Array(fileObject.data);
+
+        const body = {
+            data: array,
+            name: fileObject.name,
+            type: fileObject.type
+        };
+
+        await fetch("/api/dragged-images", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        });
+    })
+    
+
+
 })
+
+delete_button.addEventListener("click", async () => {
+    await fetch("/api/dragged-images", {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+})
+

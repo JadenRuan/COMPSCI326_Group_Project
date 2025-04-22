@@ -4,14 +4,14 @@
     background-color: lightgray;
 }
 
-#previewing-zone {
+#previewing-zone, #displaying-zone {
     margin-top: 20px;
     height: 200px;
     width: 200px;
     background-color: lightgray;
 }
 
-#previewing-zone > img {
+#previewing-zone > img, #displaying-zone > img {
     height: 100px;
     width: 100px;
     object-fit: cover;

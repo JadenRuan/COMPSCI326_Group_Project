@@ -6,6 +6,9 @@ class DraggedImageController {
     }
 
     async addDraggedImage(req, res) {
+
+        await console.log("POST in controller");
+
         try {
             if (!req.body || !req.body.data) {
                 return res.status(400).json({ error: "Image needs body data." })
@@ -17,11 +20,20 @@ class DraggedImageController {
 
         } catch (error) {
             return res.status(500).json({ error: "Something went wrong..."})
+            
+        } finally {
+            console.log("model", this.model);
         }
+
+        
     }
 
     async getDraggedImages(req, res) {
-        await console.log("getDraggedImages");
+        await console.log("GET in controller");
+    }
+
+    async removeDraggedImage(req, res) {
+        await console.log("DELETE in controller")
     }
 
 }

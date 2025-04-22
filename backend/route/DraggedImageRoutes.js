@@ -9,13 +9,15 @@ class Routes {
 
     initializeRoutes() {
         this.router.get("/dragged-images", async (req, res) => {
-            console.log("Getting data...")
-            // res.send({data: null});
             await DraggedImageController.getDraggedImages(req, res);
         });
 
         this.router.post("/dragged-images", async (req, res) => {
             await DraggedImageController.addDraggedImage(req, res);
+        })
+
+        this.router.delete("/dragged-images", async (req, res) => {
+            await DraggedImageController.removeDraggedImage(req, res);
         })
 
     }

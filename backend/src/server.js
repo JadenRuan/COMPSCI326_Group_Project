@@ -11,7 +11,8 @@ class Server {
     configureMiddleware() {
         console.log("Configuring middleware...");
         this.app.use(express.static("../frontend/"));
-        this.app.use(express.json());
+        // this.app.use(express.json({ limit: "10mb" }));
+        this.app.use(express.json( {limit: "100mb"}));
     }
    
     setupRoutes() {
