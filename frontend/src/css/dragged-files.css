@@ -1,20 +1,32 @@
 #landing-zone {
     height: 200px;
-    width: 200px;
+    width: 1000px;
     background-color: lightgray;
 }
 
 #previewing-zone, #displaying-zone {
     margin-top: 20px;
     height: 200px;
-    width: 200px;
+    width: 1000px;
     background-color: lightgray;
 }
 
 #previewing-zone > img, #displaying-zone > img {
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
     object-fit: cover;
     margin: 0px;
     display: inline;
+}
+
+button {
+    height: 50px;
+    width: 200px;
+    overflow: auto;
+    font-size: 1.25rem;
+}
+
+#post-button {
+    margin-left: 15px;
+    margin-right: 15px;
 }

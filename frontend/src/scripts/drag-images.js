@@ -171,7 +171,7 @@ post_button.addEventListener("click", async () => {
 
     LOCAL_FILES = []; // remove after saving
     previewLocalFiles();
-    previewing_zone.innerText = "Preview your images here.";
+    previewing_zone.innerText = "Images saved.";
 
 })
 
