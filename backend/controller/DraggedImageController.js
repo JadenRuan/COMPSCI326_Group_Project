@@ -6,10 +6,6 @@ class DraggedImageController {
     }
 
     async addDraggedImage(req, res) {
-
-        await console.log("addDraggedImage");
-        await console.log(req.body);
-
         try {
             if (!req.body || !req.body.data) {
                 return res.status(400).json({ error: "Image needs body data." })
@@ -22,7 +18,6 @@ class DraggedImageController {
         } catch (error) {
             return res.status(500).json({ error: "Something went wrong..."})
         }
-
     }
 
     async getDraggedImages(req, res) {
