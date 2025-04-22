@@ -4,9 +4,11 @@ const delete_button = document.getElementById("delete-button")
 
 const landing_zone = document.getElementById("landing-zone");
 const previewing_zone = document.getElementById("previewing-zone")
+const displaying_zone = document.getElementById("displaying-zone");
 const file_input = document.getElementById("file-input");
 
 let LOCAL_FILES = []; // store files locally before user uploads them
+let IN_MEMORY_FILES = [];
 
 function preventDefaultBehavior(event) {
     event.preventDefault();
@@ -41,7 +43,6 @@ landing_zone.addEventListener('drop', async (event) => {
 
         
             if (LOCAL_FILES.findIndex(img => img.name === file.name) === -1) {
-                
                 LOCAL_FILES.push(draggedImageObject);
             }
 
@@ -75,6 +76,25 @@ function previewLocalFiles() {
 }
 
 
+function displayFiles() {
+    displaying_zone.innerHTML = ''; // remove previous
+
+    IN_MEMORY_FILES.forEach((fileObject) => {
+
+        const buffer = new Uint8Array(fileObject.data).buffer;
+
+        const display = document.createElement("img");
+        const blob = new Blob([buffer], {type: fileObject.type});
+        const url = URL.createObjectURL(blob);
+        display.src = url;
+        display.onload = () => {
+            URL.revokeObjectURL(url);
+        }
+        displaying_zone.appendChild(display);
+    })
+}
+
+
 get_button.addEventListener("click", async () => {
 
     const data = await fetch("/api/dragged-images", {
@@ -84,8 +104,24 @@ get_button.addEventListener("click", async () => {
         },
     });
 
-    const res = await data.json();
-    console.log(res.draggedImages);
+    const images = await data.json();
+
+    images.array.forEach(fileObject => {
+
+        const array = fileObject.data; // unit 8 array 
+        const values = Object.values(array);
+        console.log(values);
+
+        const newFileObject = {
+            data: values,
+            name: fileObject.name,
+            type: fileObject.type
+        }  
+
+        IN_MEMORY_FILES.push(newFileObject);
+    });
+
+    displayFiles();
 })
 
 post_button.addEventListener("click", async () => {
@@ -93,6 +129,9 @@ post_button.addEventListener("click", async () => {
     LOCAL_FILES.forEach(async fileObject => {
 
         const array = new Uint8Array(fileObject.data);
+        console.log("array buffer:", fileObject.data);
+        console.log("unit 8 array", array)
+        console.log("array buffer again", array.buffer);
 
         const body = {
             data: array,

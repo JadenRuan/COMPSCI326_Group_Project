@@ -20,7 +20,7 @@ class DraggedImageController {
 
         } catch (error) {
             return res.status(500).json({ error: "Something went wrong..."})
-            
+
         } finally {
             console.log("model", this.model);
         }
@@ -29,7 +29,8 @@ class DraggedImageController {
     }
 
     async getDraggedImages(req, res) {
-        await console.log("GET in controller");
+        const array = await this.model.read(); // gets all images
+        res.json( { array } );
     }
 
     async removeDraggedImage(req, res) {
