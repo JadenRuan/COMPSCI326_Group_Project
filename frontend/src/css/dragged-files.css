@@ -1,0 +1,20 @@
+#landing-zone {
+    height: 200px;
+    width: 200px;
+    background-color: lightgray;
+}
+
+#previewing-zone {
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+    background-color: lightgray;
+}
+
+#previewing-zone > img {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    margin: 0px;
+    display: inline;
+}
