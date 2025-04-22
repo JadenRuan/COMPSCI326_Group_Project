@@ -32,7 +32,7 @@ landing_zone.addEventListener('drop', async (event) => {
         const fileReader = new FileReader();
         fileReader.readAsArrayBuffer(file);
 
-        fileReader.onloadend = (event) => {
+        fileReader.onloadend = async (event) => {
             const data = event.target.result;
 
             const draggedImageObject = {
@@ -41,8 +41,10 @@ landing_zone.addEventListener('drop', async (event) => {
                 type: file.type
             }
 
-        
-            if (LOCAL_FILES.findIndex(img => img.name === file.name) === -1) {
+
+            const saved = await alreadySaved(draggedImageObject);
+
+            if (LOCAL_FILES.findIndex(img => img.name === file.name) === -1 && !saved) {
                 LOCAL_FILES.push(draggedImageObject);
             }
 
@@ -57,12 +59,32 @@ landing_zone.addEventListener('drop', async (event) => {
     };
 })
 
+async function alreadySaved(fileObject) {
+    const data = await fetch("/api/dragged-images", {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json' 
+        },
+    });
+
+    let returnValue = true;
+
+    const d = await data.json();
+    console.log(d.array);
+    if (d.array.findIndex(img => img.name === fileObject.name) === -1) {
+        returnValue = false;
+    } else {
+        returnValue = true;
+    }
+
+    console.log(returnValue);
+    return returnValue;
+
+}
+
+
 function previewLocalFiles() {
     previewing_zone.innerHTML = ''; // remove previous
-
-
-    console.log(LOCAL_FILES);
-
     LOCAL_FILES.forEach((fileObject) => {
         const preview = document.createElement("img");
         const blob = new Blob([fileObject.data], {type: fileObject.type});
@@ -80,9 +102,7 @@ function displayFiles() {
     displaying_zone.innerHTML = ''; // remove previous
 
     IN_MEMORY_FILES.forEach((fileObject) => {
-
         const buffer = new Uint8Array(fileObject.data).buffer;
-
         const display = document.createElement("img");
         const blob = new Blob([buffer], {type: fileObject.type});
         const url = URL.createObjectURL(blob);
@@ -106,11 +126,10 @@ get_button.addEventListener("click", async () => {
 
     const images = await data.json();
 
-    images.array.forEach(fileObject => {
+    images.array.forEach(async fileObject => {
 
         const array = fileObject.data; // unit 8 array 
         const values = Object.values(array);
-        console.log(values);
 
         const newFileObject = {
             data: values,
@@ -118,7 +137,12 @@ get_button.addEventListener("click", async () => {
             type: fileObject.type
         }  
 
-        IN_MEMORY_FILES.push(newFileObject);
+
+        if (IN_MEMORY_FILES.findIndex(img => img.name === newFileObject.name) === -1) {
+            IN_MEMORY_FILES.push(newFileObject);
+        }
+
+
     });
 
     displayFiles();
@@ -129,10 +153,7 @@ post_button.addEventListener("click", async () => {
     LOCAL_FILES.forEach(async fileObject => {
 
         const array = new Uint8Array(fileObject.data);
-        console.log("array buffer:", fileObject.data);
-        console.log("unit 8 array", array)
-        console.log("array buffer again", array.buffer);
-
+    
         const body = {
             data: array,
             name: fileObject.name,
