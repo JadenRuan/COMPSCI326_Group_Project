@@ -85,6 +85,11 @@ async function alreadySaved(fileObject) {
 
 function previewLocalFiles() {
     previewing_zone.innerHTML = ''; // remove previous
+
+    // const p = document.createElement("p");
+    // p.classList.add("zone");
+    // previewing_zone.append
+
     LOCAL_FILES.forEach((fileObject) => {
         const preview = document.createElement("img");
         const blob = new Blob([fileObject.data], {type: fileObject.type});
@@ -171,7 +176,10 @@ post_button.addEventListener("click", async () => {
 
     LOCAL_FILES = []; // remove after saving
     previewLocalFiles();
-    previewing_zone.innerText = "Images saved.";
+    
+    const p = document.createElement("p");
+    p.innerText = "Images saved.";
+    previewing_zone.appendChild(p);
 
 })
 
@@ -183,7 +191,11 @@ delete_button.addEventListener("click", async () => {
         }
     });
 
-    displaying_zone.innerText = "Deleted all images."    
-
+    IN_MEMORY_FILES = [];
+    displayFiles();
+    
+    const p = document.createElement("p");
+    p.innerText = "Images deleted.";
+    displaying_zone.appendChild(p);
 })
 

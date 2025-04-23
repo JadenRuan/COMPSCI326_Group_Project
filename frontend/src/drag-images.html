@@ -4,29 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./css/dragged-files.css" rel="stylesheet">
+    <!-- <link href="./css/home.css" rel="stylesheet"> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 
     <title>Drag Files</title>
 </head>
 <body>
-    <button id="get-button">Display your images</button>
-    <button id="post-button">Save your images</button>
-    <button id="delete-button">Delete all images</button>
 
-    <div id="landing-zone">
-        <p>Drag your images here.</p>
+
+    <header>
+
+        <div class="navigation-bar">
+            <div class="nav-logo"><a href="../index.html"><img src="../images/logo.png"></a></div>
+            <div class="nav-home"><a href="../index.html">Home</a></div>
+            <div class="nav-about-us"><a href="./about-us.html">About Us</a></div>
+            <div class="nav-vendors"><a href="./vendors.html">Vendors</a></div>
+            <div class="nav-products"><a href="./product.html">Products</a></div>
+            <div class="nav-upload-images"><a href="./drag-images.html">Upload Images</a></div>
+            <div class="nav-spacer"></div>
+            <div class="nav-my-account"><a href="./vendorMgmt.html">My Account</a></div>
+        </div> 
+    </header>
+
+    <div id="drag-ui">
+        <div id="buttons">
+            <button id="get-button">Display your images</button>
+            <button id="post-button">Save your images</button>
+            <button id="delete-button">Delete all images</button>
+        </div>
+
+        <div id="landing-zone" class="zone">
+            <p>Drag your images here.</p>
+        </div>
+
+
+        <div id="previewing-zone" class="zone">
+            <p>Preview your images here.</p>
+        </div>
+
+        <input type="file" id="file-input" multiple hidden> 
+
+        <div id="displaying-zone" class="zone">
+            <p>See your saved images here.</p>
+        </div>
+
     </div>
-
-
-    <div id="previewing-zone">
-        <p>Preview your images here.</p>
-    </div>
-
-    <input type="file" id="file-input" multiple hidden> 
-
-    <div id="displaying-zone">
-        <p>See your saved images here.</p>
-    </div>
-
     <script src="./scripts/drag-images.js"></script>
 
 </body>
