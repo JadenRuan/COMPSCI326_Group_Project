@@ -1,0 +1,194 @@
+body {
+    margin: 0px;
+    background-color: #cbd4c6;
+}
+
+/* NAVBAR */
+
+.navigation-bar {
+    display: grid;
+    grid-template-rows: 75px 50px;
+    grid-template-columns: 125px min-content min-content min-content min-content 0.75fr 2fr min-content;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.nav-logo {
+    grid-row: 1/3;
+    grid-column: 1/2;
+}
+
+.nav-logo img {
+    width: 125px;
+    height: 125px;
+    vertical-align: bottom;
+}
+
+.nav-home {
+    grid-row: 2/3;
+    grid-column: 2/3;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-about-us {
+    grid-row: 2/3;
+    grid-column: 3/4;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    white-space: nowrap;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-vendors {
+    grid-row: 2/3;
+    grid-column: 4/5;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-products {
+    grid-row: 2/3;
+    grid-column: 5/6;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-upload-images {
+    grid-row: 2/3;
+    grid-column: 6/7;
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.nav-spacer {
+    grid-row: 2/3;
+    grid-column: 7/8;
+    /* background-color: linen; */
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+.nav-my-account {
+    grid-row: 2/3;
+    grid-column: 8/9;
+    /* background-color: lightseagreen; */
+
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    white-space: nowrap;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+header a:not(.nav-logo > a):link, header a:not(.nav-log > a):visited, header a:not(.nav-logo > a):active {
+    font-size: 1.5rem;
+    font-family: "Manrope", sans-serif;
+    color:black;
+    text-decoration: none;
+    background-color: #b4bfb3;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+    align-items: center;
+}
+
+header a:not(.nav-logo > a):hover {
+    font-size: 1.5rem;
+    font-family: "Manrope", sans-serif;
+    color:black;
+    text-decoration: none;
+    background-color: #a2aca1;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    border-radius: 10px;
+    align-items: center;
+}
+
+/* DRAG IMAGES */
+
+
+#landing-zone, #previewing-zone, #displaying-zone {
+    margin-left: 100px;
+    height: 200px;
+    width: 1000px;
+    background-color: darkgrey;
+}
+
+.zone {
+    margin: 20px;
+    border: solid darkgray;
+}
+
+.zone > p {
+    margin: 0px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#previewing-zone > img, #displaying-zone > img {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    margin: 0px;
+    display: inline;
+}
+
+button {
+    height: 50px;
+    width: 200px;
+    overflow: auto;
+    font-size: 1.25rem;
+}
+
+#get-button {
+    margin-top: 20px;
+    margin-left: 100px;
+}
+
+#post-button {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#delete-button {
+    margin-bottom: 20px;
+}
+
+#drag-ui {
+    /* border: solid red; */
+    padding: 2rem;
+}
+
+p {
+    font-family: "Manrope", sans-serif;
+    font-size: 1.5rem;
+}
+
+#buttons {
+    margin-bottom: 20px;
+}

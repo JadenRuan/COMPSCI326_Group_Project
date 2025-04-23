@@ -1,3 +1,5 @@
+
+
 // image database class and methods
 class ImageDatabase {
     constructor(dbName) {
@@ -100,7 +102,6 @@ class ImageDatabase {
 }
 
 
-
 const landing = document.getElementById("landing");
 const file_input = document.getElementById("file-input");
 const idb = new ImageDatabase("idb");
@@ -140,6 +141,8 @@ const changeTextAfterHover = () => { // message not during hover
 const prev_added = [];
 
 const fileDrop =  (event) => {
+
+
     let counter = 0;
     event.preventDefault(); 
 
