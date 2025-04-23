@@ -17,7 +17,7 @@ class Routes {
         })
 
         this.router.delete("/dragged-images", async (req, res) => {
-            await DraggedImageController.removeDraggedImage(req, res);
+            await DraggedImageController.removeDraggedImage(req,)
         })
 
     }
