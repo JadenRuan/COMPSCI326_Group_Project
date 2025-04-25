@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // const productId = btn.closest('.tile').id;
             console.log('Clicked button for productId:', productId);  // Debug
             try {
-                const res = await fetch("/api/wishlist/add", {
+                const res = await fetch("/api/wishlist/", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ id: productId })

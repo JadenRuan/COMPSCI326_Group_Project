@@ -14,7 +14,7 @@ class Routes {
         });
 
         // Add item to wishlist
-        this.router.post("/wishlist/add", async (req, res) => {
+        this.router.post("/wishlist", async (req, res) => {
             console.log("Received POST request to add item to wishlist:", req.body);  // Debug
             // const { productId } = req.body;  // Ensure productId is passed in body
             // if (!req.body || !req.body.productId) {
@@ -24,7 +24,7 @@ class Routes {
         });
 
         // Remove item from wishlist
-        this.router.delete("/wishlist/delete", async (req, res) => {
+        this.router.delete("/wishlist", async (req, res) => {
             // const { productId } = req.body;  // Ensure productId is passed in body
             // if (!req.body || !req.body.productId) {
             //     return res.status(400).json({ message: "Product ID is required" });
