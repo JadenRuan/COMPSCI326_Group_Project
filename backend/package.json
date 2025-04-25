@@ -28,8 +28,6 @@
     "test": ""
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "node.js": "^0.0.1-security"
+    "express": "^5.1.0"
   }
 }
