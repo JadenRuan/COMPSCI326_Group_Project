@@ -1,8 +1,13 @@
-import InMemoryDraggedImageModel from "./InMemoryDraggedImageModel.js";
+import InMemoryDraggedImageModel from "./InMemoryDraggedImageModel.js"
+import JSONWishlistModel from "./JSONWishlistModel.js";
 
 class _ModelFactory {
     getDraggedImageModel() {
         return InMemoryDraggedImageModel;
+    }
+
+    getWishlistModel() {
+        return JSONWishlistModel;
     }
 }
 
