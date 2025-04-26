@@ -1,10 +1,14 @@
-import InMemoryDraggedImageModel from "./InMemoryDraggedImageModel.js";
+import DraggedImageModel from './DraggedImageModel.js';
+import UserModel from './UserModel.js';
 
-class _ModelFactory {
-    getDraggedImageModel() {
-        return InMemoryDraggedImageModel;
+class ModelFactory {
+    static getDraggedImageModel() {
+        return DraggedImageModel;
+    }
+
+    static getUserModel() {
+        return UserModel;
     }
 }
 
-const ModelFactory = new _ModelFactory();
 export default ModelFactory;

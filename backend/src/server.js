@@ -18,6 +18,7 @@ class Server {
     setupRoutes() {
         console.log("Setting up routes...");
         this.app.use("/api", DraggedImageRoutes);
+        this.app.use("/api/users", userRoutes);
     }
 
     start(port = 3000) {
