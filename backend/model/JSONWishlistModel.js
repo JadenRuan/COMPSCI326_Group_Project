@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-const FILE = './data/wishlist.json';  // Make sure this file exists with []
+const FILE = '../data/wishlist.json';
 
 class WishlistModel {
     static async readFile() {

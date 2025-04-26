@@ -15,21 +15,14 @@ class Routes {
 
         // Add item to wishlist
         this.router.post("/wishlist", async (req, res) => {
-            console.log("Received POST request to add item to wishlist:", req.body);  // Debug
-            // const { productId } = req.body;  // Ensure productId is passed in body
-            // if (!req.body || !req.body.productId) {
-            //     return res.status(400).json({ message: "Product ID is required" });
-            // }
-            await WishlistController.addItem(req, res);  // Pass productId as argument
+            console.log("Adding item to wishlist:", req.body); // Debug
+            await WishlistController.addItem(req, res);
         });
 
         // Remove item from wishlist
         this.router.delete("/wishlist", async (req, res) => {
-            // const { productId } = req.body;  // Ensure productId is passed in body
-            // if (!req.body || !req.body.productId) {
-            //     return res.status(400).json({ message: "Product ID is required" });
-            // }
-            await WishlistController.removeItem(req, res);  // Pass productId as argument
+            await console.log("Removing item from wishlist:", req.body); // Debug
+            //await WishlistController.removeItem(req, res);
         });
     }
 

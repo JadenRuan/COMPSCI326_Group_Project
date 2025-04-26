@@ -1,6 +1,7 @@
 import express from "express";
 import DraggedImageRoutes from '../route/DraggedImageRoutes.js';
 import WishlistRoutes from '../route/WishlistRoutes.js'; 
+//import cors from "cors";
 
 class Server {
     constructor() {
@@ -13,11 +14,18 @@ class Server {
         console.log("Configuring middleware...");
         this.app.use(express.static("../frontend/"));
         // this.app.use(express.json({ limit: "10mb" }));
-        this.app.use(express.json( {limit: "100mb"}));
+        this.app.use(express.json( {limit: "100mb", strict: false}));
     }
    
     setupRoutes() {
         console.log("Setting up routes...");
+        //this.app.use(cors())
+        this.app.use(function(req, res, next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Origin, X-Requested-With, Content-Type, Accept");
+            res.header("Access-Control-Allow-Headers", "*");
+            next();
+        })
         this.app.use("/api", DraggedImageRoutes);
         this.app.use("/api", WishlistRoutes);
     }

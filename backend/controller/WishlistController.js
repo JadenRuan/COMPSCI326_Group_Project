@@ -11,7 +11,7 @@ class WishlistController {
                 return res.status(400).json({ error: "Invalid item data." });
             }
 
-            const task = await this.model.addItem(newItem); //add to json file
+            const task = await this.model.addItem(req.body); //add to json file
             return res.status(201).json(task);
 
         } catch (error) {
@@ -22,8 +22,8 @@ class WishlistController {
 
     async removeItem(req, res) {
         try {
-            const { id } = req.params;
-            if (!id) {
+            // const { id } = req.params;
+            if (!req.body || !req.body.id) {
                 return res.status(400).json({ error: "Item ID is required." });
             }
 

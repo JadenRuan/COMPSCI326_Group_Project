@@ -3,18 +3,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // Fetch wishlist items from the backend
-        const res = await fetch('/api/wishlist', {
+        console.log("Inside try to fetch wishlist items"); // Debug
+        const res = await fetch('http://127.0.0.1:3000/api/wishlist', {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         });
+        console.log("Response from fetch wishlist items:", res); // Debug
         if (!res.ok) throw new Error('Failed to fetch wishlist');
-        const items = await res.json();
+        const items = await res.json()
+        console.log("Fetched wishlist items:", items); // Debug
+        console.log("Items in wishlist:", Object.values(items.items)); // Debug
+
+        let itemsArray = Object.values(items.items); // Convert object to array
 
         container.innerHTML = ''; // Clear existing content
 
-        items.forEach(item => {
+        itemsArray.forEach(item => {
             const tile = document.createElement('div');
             tile.className = 'tile';
+            tile.id = item.id; // Set the id of the tile to the product id
 
             tile.innerHTML = `
                 <h4>${item.name}</h4>
@@ -22,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <img src="${item.image || 'empty-image.jpg'}" alt="Product Image" width="200" height="200">
                 <p>${item.description}</p>
                 <p>Price: $${item.price}</p>
+                <br>
                 <button class="remove" data-id="${item.id}">Remove</button>
             `;
 
@@ -32,12 +40,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll('.remove').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const productId = btn.dataset.id;
+                console.log('Clicked button for productId:', productId);  // Debug
+                let product = document.getElementById(productId);
                 try {
-                    const res = await fetch('/api/wishlist', {
-                        method: 'DELETE',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ productId })
+                    const res = await fetch('http://127.0.0.1:3000/api/wishlist', {
+                        method: "DELETE",
+                        headers: { 
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: productId,
+                            name: product.querySelector('h4').innerText, 
+                            image: product.querySelector('img').src, 
+                            description: product.querySelector('p').innerText, 
+                            price: product.querySelector('p:nth-of-type(2)').innerText
+                        })
                     });
+
+                    console.log('Response from delete request:', res); // Debug
 
                     if (res.ok) {
                         btn.parentElement.remove(); // Remove tile from UI
