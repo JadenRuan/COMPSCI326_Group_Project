@@ -15,14 +15,12 @@ class Routes {
 
         // Add item to wishlist
         this.router.post("/wishlist", async (req, res) => {
-            console.log("Adding item to wishlist:", req.body); // Debug
             await WishlistController.addItem(req, res);
         });
 
         // Remove item from wishlist
         this.router.delete("/wishlist", async (req, res) => {
-            await console.log("Removing item from wishlist:", req.body); // Debug
-            //await WishlistController.removeItem(req, res);
+            await WishlistController.removeItem(req, res);
         });
     }
 

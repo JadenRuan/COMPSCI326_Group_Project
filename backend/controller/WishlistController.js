@@ -27,7 +27,7 @@ class WishlistController {
                 return res.status(400).json({ error: "Item ID is required." });
             }
 
-            await this.model.removeItem(id);
+            await this.model.removeItem(req.body); //remove from json file
             return res.status(200).json({ message: "Item removed from wishlist." });
         } catch (error) {
             console.error("Error in removeItem:", error);

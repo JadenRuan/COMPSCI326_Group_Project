@@ -1,19 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const addButtons = document.querySelectorAll('.add');
-    console.log('Add buttons found:', addButtons.length);  // Debug
-    console.log('Add buttons:', addButtons);  // Debug
 
     addButtons.forEach(btn => {
-        console.log('Button:', btn);  // Debug
-        console.log('Button ID:', btn.dataset.id);  // Debug
         btn.addEventListener('click', async () => {
             const productId = btn.dataset.id;
             // const productId = btn.closest('.tile').id;
             let product = document.getElementById(productId);
-            console.log('Product:', product);  // Debug
-            console.log('Clicked button for productId:', productId);  // Debug
             try {
-                console.log('Sending fetch request to add productId:', productId);  // Debug
                 const res = await fetch("http://127.0.0.1:3000/api/wishlist", {
                     method: "POST",
                     headers: { 
@@ -26,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         description: product.querySelector('p').innerText, 
                         price: product.querySelector('p:nth-of-type(2)').innerText })
                 });
-                console.log('Fetch response:', res);  // Debug
 
                 if (!res.ok) throw new Error(`Server error: ${res.status}`);
 

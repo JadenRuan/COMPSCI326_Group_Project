@@ -1,7 +1,6 @@
 import express from "express";
 import DraggedImageRoutes from '../route/DraggedImageRoutes.js';
 import WishlistRoutes from '../route/WishlistRoutes.js'; 
-//import cors from "cors";
 
 class Server {
     constructor() {
@@ -19,11 +18,10 @@ class Server {
    
     setupRoutes() {
         console.log("Setting up routes...");
-        //this.app.use(cors())
         this.app.use(function(req, res, next) {
             res.header("Access-Control-Allow-Origin", "*");
-            res.header("Origin, X-Requested-With, Content-Type, Accept");
-            res.header("Access-Control-Allow-Headers", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            res.header("Access-Control-Allow-Methods", "*");
             next();
         })
         this.app.use("/api", DraggedImageRoutes);

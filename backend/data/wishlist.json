@@ -1,16 +1,1 @@
-[
-  {
-    "id": "v1product1",
-    "name": "Product 1",
-    "image": "http://127.0.0.1:3100/images/empty-image.jpg",
-    "description": "Product Description",
-    "price": "Price: $0.00"
-  },
-  {
-    "id": "v1product2",
-    "name": "Product 2",
-    "image": "http://127.0.0.1:3100/images/empty-image.jpg",
-    "description": "Product Description",
-    "price": "Price: $0.00"
-  }
-]
+[]

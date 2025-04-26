@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log("Response from fetch wishlist items:", res); // Debug
         if (!res.ok) throw new Error('Failed to fetch wishlist');
         const items = await res.json()
-        console.log("Fetched wishlist items:", items); // Debug
-        console.log("Items in wishlist:", Object.values(items.items)); // Debug
 
         let itemsArray = Object.values(items.items); // Convert object to array
 
@@ -40,7 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll('.remove').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const productId = btn.dataset.id;
-                console.log('Clicked button for productId:', productId);  // Debug
                 let product = document.getElementById(productId);
                 try {
                     const res = await fetch('http://127.0.0.1:3000/api/wishlist', {
@@ -55,8 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                             price: product.querySelector('p:nth-of-type(2)').innerText
                         })
                     });
-
-                    console.log('Response from delete request:', res); // Debug
 
                     if (res.ok) {
                         btn.parentElement.remove(); // Remove tile from UI
