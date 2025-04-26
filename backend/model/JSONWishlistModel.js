@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 
-const FILE = './data/wishlist.json';  // Make sure this file exists with []
+const FILE = '../data/wishlist.json';
 
 class WishlistModel {
     static async readFile() {
@@ -31,7 +31,7 @@ class WishlistModel {
 
     static async removeItem(productId) {
         let items = await this.readFile();
-        items = items.filter(id => id !== productId);
+        items = items.filter(elem => elem.id !== productId.id);
         await this.writeFile(items);
         return items;
     }
