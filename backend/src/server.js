@@ -1,5 +1,6 @@
 import express from "express";
-import DraggedImageRoutes from '../route/DraggedImageRoutes.js'; 
+import DraggedImageRoutes from '../route/DraggedImageRoutes.js';
+import WishlistRoutes from '../route/WishlistRoutes.js'; 
 
 class Server {
     constructor() {
@@ -18,6 +19,7 @@ class Server {
     setupRoutes() {
         console.log("Setting up routes...");
         this.app.use("/api", DraggedImageRoutes);
+        this.app.use("/api", WishlistRoutes);
         this.app.use("/api/users", userRoutes);
     }
 
@@ -25,10 +27,12 @@ class Server {
         this.app.listen(port, () => {
             console.log(`Server starting on port ${port}...`);
         })
-    }
+    }   
 
 }
 
 console.log("Starting server...");
 const server = new Server();
 server.start();
+console.log("Server is running after starting...");
+
