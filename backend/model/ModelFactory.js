@@ -11,13 +11,17 @@ class ModelFactory {
     getWishlistModel() {
         return JSONWishlistModel;
     }
-}
-
-const ModelFactory = new _ModelFactory();
 
     static getUserModel() {
         return UserModel;
     }
 }
+
+const ModelFactory = new _ModelFactory();
+
+//     static getUserModel() {
+//         return UserModel;
+//     }
+// }
 
 export default ModelFactory;
