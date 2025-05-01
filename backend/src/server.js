@@ -1,6 +1,7 @@
 import express from "express";
 import DraggedImageRoutes from '../route/DraggedImageRoutes.js';
 import WishlistRoutes from '../route/WishlistRoutes.js'; 
+import userRoutes from "../route/AuthRoutes.js"
 
 class Server {
     constructor() {
