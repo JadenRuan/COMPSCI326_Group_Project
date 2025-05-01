@@ -209,11 +209,11 @@ header a:not(.nav-logo > a):hover {
     padding: 8px;
 }
 
-.remove{
+/* .remove{
     font-size: medium;
     float: right;
     padding: 8px;
-}
+} */
 
 .search-bar{
     width: 85%;

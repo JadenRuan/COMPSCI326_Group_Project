@@ -38,3 +38,5 @@ Team Member List:
 Milestone #4 Slide Deck: https://docs.google.com/presentation/d/1Bx-yrPk7mqxLvgqwESk8ET7WuEWoORtvKnnaOP8ONQc/edit?usp=sharing 
 
 Milestone #5 Slide Deck: https://docs.google.com/presentation/d/1UKelk3fD7dwusR47kdRC6-NSYhFGSyf_S4Y60bkwx94/edit?usp=sharing
+
+Milestone #6 Slide Deck: https://docs.google.com/presentation/d/1_V-FAi69W_T_tl_HVgFH_1Fc4QHlDzsFTMrC5WKgAy4/edit?usp=sharing
