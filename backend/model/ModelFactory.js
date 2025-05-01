@@ -3,9 +3,9 @@ import JSONWishlistModel from "./JSONWishlistModel.js";
 import DraggedImageModel from './DraggedImageModel.js';
 import UserModel from './UserModel.js';
 
-import 
+import SQLiteTaskModel from "./SQLiteTaskModel.js";
 
-class ModelFactory {
+class _ModelFactory {
     async getModel(model = "sqlite", type) {
         if (type === "forDraggedImage") { // draggedImage model 
             if (model === "sqlite") {
@@ -37,5 +37,5 @@ class ModelFactory {
 //     }
 // }
 
-const ModelFactory = new ModelFactory();
+const ModelFactory = new _ModelFactory();
 export default ModelFactory;
