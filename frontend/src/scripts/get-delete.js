@@ -1,3 +1,4 @@
+// Change port to 3001 to run the frontend
 document.addEventListener('DOMContentLoaded', async () => {
     const container = document.getElementById('tiles');
 

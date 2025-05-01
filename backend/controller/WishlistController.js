@@ -12,7 +12,7 @@ class WishlistController {
             }
 
             const task = await this.model.addItem(req.body); //add to json file
-            return res.status(201).json(task);
+            return res.status(200).json(task);
 
         } catch (error) {
             console.error("Error in addItem:", error);
