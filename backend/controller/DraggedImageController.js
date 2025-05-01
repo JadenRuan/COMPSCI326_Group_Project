@@ -1,13 +1,19 @@
 import ModelFactory from "../model/ModelFactory.js";
 
 class DraggedImageController {
+    // constructor() {
+    //     this.model = ModelFactory.getDraggedImageModel();
+    // }
+    
     constructor() {
-        this.model = ModelFactory.getDraggedImageModel();
+        this.getModelPromise = ModelFactory.getModel("sqlite", "forDraggedImage").then((model) => {
+            this.model = model;
+        })
     }
 
-    async addDraggedImage(req, res) {
 
-        await console.log("POST in controller");
+    async addDraggedImage(req, res) {
+        await this.getModelPromise;
 
         try {
             if (!req.body || !req.body.data) {
@@ -29,14 +35,19 @@ class DraggedImageController {
     }
 
     async getDraggedImages(req, res) {
+        // await this.getModelPromise;
+        await this.getModelPromise;
+
         const array = await this.model.read(); // gets all images
         res.json( { array } );
     }
 
     async removeDraggedImage(req, res) {
+        await this.getModelPromise;
         await this.model.delete();
         // res.json(await this.model.read());
-        res.status(201).json(await this.model.read());
+        // return res.status(201).json(await this.model.read());
+        return;
     }
 
 }
