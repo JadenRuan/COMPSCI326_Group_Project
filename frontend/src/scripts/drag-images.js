@@ -41,6 +41,8 @@ landing_zone.addEventListener('drop', async (event) => {
                 type: file.type
             }
 
+            console.log("DATA", data);
+
 
             const saved = await alreadySaved(draggedImageObject);
 
@@ -70,16 +72,15 @@ async function alreadySaved(fileObject) {
     let returnValue = true;
 
     const d = await data.json();
-    console.log(d.array);
+    // console.log(d.array);
     if (d.array.findIndex(img => img.name === fileObject.name) === -1) {
         returnValue = false;
     } else {
         returnValue = true;
     }
 
-    console.log(returnValue);
+    // console.log(returnValue);
     return returnValue;
-
 }
 
 
@@ -91,6 +92,7 @@ function previewLocalFiles() {
     // previewing_zone.append
 
     LOCAL_FILES.forEach((fileObject) => {
+        console.log(fileObject.data);
         const preview = document.createElement("img");
         const blob = new Blob([fileObject.data], {type: fileObject.type});
         const url = URL.createObjectURL(blob);
@@ -107,7 +109,8 @@ function displayFiles() {
     displaying_zone.innerHTML = ''; // remove previous
 
     IN_MEMORY_FILES.forEach((fileObject) => {
-        const buffer = new Uint8Array(fileObject.data).buffer;
+        console.log("DISPLAY FILES:", fileObject.data.data);
+        const buffer = new Uint8Array(fileObject.data.data).buffer;
         const display = document.createElement("img");
         const blob = new Blob([buffer], {type: fileObject.type});
         const url = URL.createObjectURL(blob);
@@ -133,11 +136,11 @@ get_button.addEventListener("click", async () => {
 
     images.array.forEach(async fileObject => {
 
-        const array = fileObject.data; // unit 8 array 
-        const values = Object.values(array);
+        const array = fileObject.data; // regular array 
+        console.log(fileObject.data)
 
         const newFileObject = {
-            data: values,
+            data: array,
             name: fileObject.name,
             type: fileObject.type
         }  
@@ -157,10 +160,10 @@ post_button.addEventListener("click", async () => {
 
     LOCAL_FILES.forEach(async fileObject => {
 
-        const array = new Uint8Array(fileObject.data);
+        const array = new Uint8Array(fileObject.data); 
     
         const body = {
-            data: array,
+            data: Array.from(array),
             name: fileObject.name,
             type: fileObject.type
         };
@@ -184,6 +187,7 @@ post_button.addEventListener("click", async () => {
 })
 
 delete_button.addEventListener("click", async () => {
+    console.log("delete");
     await fetch("/api/dragged-images", {
         method: "DELETE",
         headers: {
@@ -192,6 +196,8 @@ delete_button.addEventListener("click", async () => {
     });
 
     IN_MEMORY_FILES = [];
+    LOCAL_FILES = [];
+    console.log("before display files");
     displayFiles();
     
     const p = document.createElement("p");

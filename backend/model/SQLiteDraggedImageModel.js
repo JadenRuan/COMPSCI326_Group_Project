@@ -1,13 +1,17 @@
 import { Sequelize, DataTypes, ARRAY } from "sequelize";
+import path from "path";
 
 const sequelize = new Sequelize({
     dialect: "sqlite",
-    storage: "database.sqlite"
+    storage: path.resolve("__dirname", '..', 'database.sqlite'),
+    logging: (msg) => console.log("MESSAGE:", msg)
 })
 
 const DraggedImage = sequelize.define("DraggedImage", {
     id: {
-        type: DataTypes.INTEGER // assigned in upload
+        type: DataTypes.INTEGER, // assigned in upload
+        primaryKey: true,
+        autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
@@ -16,18 +20,17 @@ const DraggedImage = sequelize.define("DraggedImage", {
         type: DataTypes.STRING
     },
     data: {
-        type: ARRAY // uint 8 array
+        type: DataTypes.BLOB // uint 8 array
     }
 })
 
-class SQLiteTaskModel {
+class _SQLiteDraggedImagekModel {
     constructor() {}
 
     async init(fresh = false) {
         await sequelize.authenticate();
-        await sequelize.sync({force: true});
+        await sequelize.sync();
     
-
         if (fresh) { // new database 
             await this.delete(); // delete old database
         }
@@ -41,19 +44,17 @@ class SQLiteTaskModel {
         if (id) {
             return await DraggedImage.findByPk(id);
         } 
+
+        const savedImages = await DraggedImage.findAll();
+        console.log("HOW MANY IMAGES: ", savedImages.length);
+
         return await DraggedImage.findAll();
     }
 
-    async delete(draggedImage) {
-        if (draggedImage === null) {
-            await DraggedImage.destroy({ truncate: true }); 
-            return;
-        }
-
-        await DraggedImage.destroy({ where: {id: draggedImage.id}})
-
+    async delete() {
+        return await DraggedImage.destroy({ truncate: true }); 
     }
 }
 
-const SQLiteDraggedImageModel = new SQLiteTaskModel();
+const SQLiteDraggedImageModel = new _SQLiteDraggedImagekModel();
 export default SQLiteDraggedImageModel;
