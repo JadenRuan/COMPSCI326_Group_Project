@@ -27,6 +27,7 @@
     "start": "http-server -p 3000 -c-1 -o -s"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
     "http-server": "^14.1.1"
   }
 }
