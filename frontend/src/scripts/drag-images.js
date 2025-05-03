@@ -108,6 +108,13 @@ function previewLocalFiles() {
 function displayFiles() {
     displaying_zone.innerHTML = ''; // remove previous
 
+    if (IN_MEMORY_FILES.length == 0) {
+        const p = document.createElement("p");
+        p.innerText = "No images saved.";
+        displaying_zone.appendChild(p);
+        return;
+    } 
+
     IN_MEMORY_FILES.forEach((fileObject) => {
         console.log("DISPLAY FILES:", fileObject.data.data);
         const buffer = new Uint8Array(fileObject.data.data).buffer;
@@ -186,6 +193,14 @@ post_button.addEventListener("click", async () => {
 
 })
 
+function deleteHandler() {
+    console.log("deleting...");
+    IN_MEMORY_FILES = [];
+    LOCAL_FILES = [];
+
+    displayFiles();
+}
+
 delete_button.addEventListener("click", async () => {
     console.log("delete");
     await fetch("/api/dragged-images", {
@@ -193,15 +208,8 @@ delete_button.addEventListener("click", async () => {
         headers: {
             'Content-Type': 'application/json'
         }
-    });
-
-    IN_MEMORY_FILES = [];
-    LOCAL_FILES = [];
-    console.log("before display files");
-    displayFiles();
-    
-    const p = document.createElement("p");
-    p.innerText = "Images deleted.";
-    displaying_zone.appendChild(p);
+    }).then(deleteHandler());
 })
+
+
 

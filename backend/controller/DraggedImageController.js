@@ -47,7 +47,7 @@ class DraggedImageController {
         await this.model.delete();
         // res.json(await this.model.read());
         // return res.status(201).json(await this.model.read());
-        return;
+        await this.model.read();
     }
 
 }
