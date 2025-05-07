@@ -1,5 +1,6 @@
 import express from "express";
 import DraggedImageRoutes from '../route/DraggedImageRoutes.js';
+import AuthRoutes from "../route/AuthRoutes.js"; // for registration
 // import WishlistRoutes from '../route/WishlistRoutes.js'; 
 
 class Server {
@@ -25,6 +26,7 @@ class Server {
             next();
         })
         this.app.use("/api", DraggedImageRoutes);
+        app.use("/api", AuthRoutes); // for registration
         // this.app.use("/api", WishlistRoutes);
         // this.app.use("/api/users", userRoutes);
     }

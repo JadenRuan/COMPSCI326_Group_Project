@@ -24,12 +24,16 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "",
-    "test": ""
+    "start": "node backend/index.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "sequelize": "^6.37.7",
-    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.10"
   }
 }
