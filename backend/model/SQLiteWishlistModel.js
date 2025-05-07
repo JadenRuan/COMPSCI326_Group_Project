@@ -45,13 +45,8 @@ class _SQLiteWishlistModel {
     }
 
     async addItem(wishlist) {
-        await console.log("Adding wishlist:", wishlist);
         try {
-            await console.log("inside try")
-            const newWishlist = Wishlist.build(wishlist);
-            await newWishlist.save();
-            await console.log("past create")
-            await console.log("newWishlist: ", newWishlist)
+            const newWishlist = Wishlist.create(wishlist);
             return newWishlist;
         } catch (error) {
             console.error("Error adding wishlist:", error);
