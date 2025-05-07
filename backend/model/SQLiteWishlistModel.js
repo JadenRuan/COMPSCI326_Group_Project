@@ -65,7 +65,6 @@ class _SQLiteWishlistModel {
     }
 
     async removeItem(item) {
-        await console.log("Removing wishlist:", item);
         try {
             const wishlist = await Wishlist.findByPk(item.id);
             if (wishlist) {
