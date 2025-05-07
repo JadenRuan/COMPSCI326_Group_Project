@@ -1,6 +1,6 @@
 import express from "express";
 import DraggedImageRoutes from '../route/DraggedImageRoutes.js';
-// import WishlistRoutes from '../route/WishlistRoutes.js'; 
+import WishlistRoutes from '../route/WishlistRoutes.js'; 
 
 class Server {
     constructor() {
@@ -25,11 +25,11 @@ class Server {
             next();
         })
         this.app.use("/api", DraggedImageRoutes);
-        // this.app.use("/api", WishlistRoutes);
+        this.app.use("/api", WishlistRoutes);
         // this.app.use("/api/users", userRoutes);
     }
 
-    start(port = 3001) {
+    start(port = 3000) {
         this.app.listen(port, () => {
             console.log(`Server starting on port ${port}...`);
         })
