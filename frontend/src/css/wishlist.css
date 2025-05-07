@@ -199,6 +199,7 @@ header a:not(.nav-logo > a):hover {
     border: none;
     margin-right: 50px;
     margin-bottom: 50px;
+    margin-top: 30px;
 }
 
 .view-products:visited{
@@ -223,4 +224,27 @@ header a:not(.nav-logo > a):hover {
     border-radius: 10px;
     align-items: center;
     text-decoration: none;
+}
+
+.search-bar{
+    width: 85%;
+    padding: 10px;
+    margin: 10px 50px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: large;
+}
+.search-bar:focus{
+    outline: none;
+    border-color: darkgreen;
+}
+
+.search-button{
+    padding: 10px 20px;
+    background-color: rgb(221, 218, 218);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: large;
 }
