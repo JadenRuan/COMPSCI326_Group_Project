@@ -40,3 +40,5 @@ Milestone #4 Slide Deck: https://docs.google.com/presentation/d/1Bx-yrPk7mqxLvgq
 Milestone #5 Slide Deck: https://docs.google.com/presentation/d/1UKelk3fD7dwusR47kdRC6-NSYhFGSyf_S4Y60bkwx94/edit?usp=sharing
 
 Milestone #6 Slide Deck: https://docs.google.com/presentation/d/1_V-FAi69W_T_tl_HVgFH_1Fc4QHlDzsFTMrC5WKgAy4/edit?usp=sharing
+
+Milestone #7 Slide Deck: https://docs.google.com/presentation/d/1UuPvtP2zNoSVIrost7xZnWhH8NuZMy_Eujdo_JRsq4g/edit?usp=sharing
