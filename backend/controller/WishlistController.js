@@ -19,8 +19,6 @@ class WishlistController {
                 return res.status(400).json({ error: "Invalid item data." });
             }
 
-            await console.log("Item for wishlist in controller:", req.body);
-
             const task = await this.model.addItem(req.body); //add data to database
             return res.status(201).json(task);
 
