@@ -70,3 +70,35 @@ loginForm.addEventListener('submit', async function (e) {
     message.style.color = 'red';
   }
 });
+
+async function deleteAllUsersHandler() {
+  console.log("Deleting all users...");
+  try {
+    const res = await fetch('/api/users', {  // Assuming this is the DELETE endpoint
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      message.textContent = data.message || 'All users deleted successfully.';
+      message.style.color = 'green';
+    } else {
+      message.textContent = data.message || 'Failed to delete users.';
+      message.style.color = 'red';
+    }
+  } catch (err) {
+    console.error('Delete users error:', err);
+    message.textContent = 'An error occurred while deleting users.';
+    message.style.color = 'red';
+  }
+}
+
+
+deleteUsersButton.addEventListener('click', async () => {
+  const confirmDelete = confirm("Are you sure you want to delete all users?");
+  if (confirmDelete) {
+    await deleteAllUsersHandler();
+  }
+});
