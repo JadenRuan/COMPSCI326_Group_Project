@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (!res.ok) error(result.message);
       else {
         success(result.message);
-        setTimeout(() => location.href = "home.html", 1200);
+        localStorage.setItem('loggedInUser', email);
+        window.location.href = 'dashboard.html';
       }
     } catch (err) {
       error(err.message);

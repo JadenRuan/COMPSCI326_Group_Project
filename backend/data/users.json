@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "accountType": "user",
+    "firstName": "test",
+    "lastName": "test",
+    "email": "test@gmail.com",
+    "password": "$2b$12$mvvu38eyQlcnOJV3eRI9f.Mpk/79lGCTOjHGg98Mnmk78Kkl6TMFq"
+  },
+  {
+    "accountType": "vendor",
+    "businessName": "testrg43g",
+    "contact": "test45gh54g",
+    "operatingHours": "testg45g45g",
+    "email": "testvendor@gmail.com",
+    "password": "$2b$12$hXcSFeSH8wN5Dljak5Mbie8sTebOe63Odeux8WWuBCmHL8qAryfiK"
+  },
+  {
+    "accountType": "user",
+    "firstName": "test",
+    "lastName": "test",
+    "email": "test5@gmail.com",
+    "password": "$2b$12$Kok2oQ6uWvfzTdI20fAoKOf6VQOB6dsKc4pQK9vFgiKu5vRHWYhUC"
+  }
+]
