@@ -2,20 +2,19 @@ import modelFactory from "../model/ModelFactory.js";
 
 class AuthController {
     constructor() {
-        this.model = modelFactory.getUserModel(); // Default model (probably JSON)
+        this.model = modelFactory.getUserModel(); 
 
-        // Asynchronously upgrade to SQLite (or another DB)
         this.getModelPromise = modelFactory.getModel("sqlite", "forUser").then((model) => {
             this.model = model;
         });
     }
 
     async register(req, res) {
-        await this.getModelPromise; // Wait for model to be ready
+        await this.getModelPromise;
 
         const { name, email, password } = req.body;
 
-        if (!name || !email || !password) {
+        if (!name || !email || !password) {ß
             return res.status(400).json({ message: "Missing name, email, or password" });
         }
 
@@ -35,7 +34,7 @@ class AuthController {
     }
 
     async login(req, res) {
-        await this.getModelPromise; // Wait for model to be ready
+        await this.getModelPromise; 
 
         const { email, password } = req.body;
 
@@ -55,6 +54,11 @@ class AuthController {
             console.error("Error in login:", error);
             return res.status(500).json({ message: "Internal server error" });
         }
+    }
+    async deleteUserInfo(req, res) {
+        await this.getModelPromise;
+        await this.model.deleteAll();
+        await this.model.read();
     }
 }
 

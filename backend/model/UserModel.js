@@ -1,39 +1,66 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import { Sequelize, DataTypes } from "sequelize";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const filePath = path.join(__dirname, '../data/users.json');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-function readData() {
-    if (!fs.existsSync(filePath)) return [];
-    return JSON.parse(fs.readFileSync(filePath, 'utf-8') || '[]');
-}
+const sequelize = new Sequelize({
+    dialect: "sqlite",
+    storage: path.resolve(__dirname, '..', 'database.sqlite'),
+    logging: (msg) => console.log("MESSAGE:", msg)
+});
 
-function writeData(data) {
-    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-}
+const User = sequelize.define("User", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING
+    },
+    email: {
+        type: DataTypes.STRING,
+        unique: true
+    },
+    password: {
+        type: DataTypes.STRING
+    }
+});
 
-class UserModel {
-    getAll() {
-        return readData();
+class _SQLiteUserModel {
+    constructor() {}
+
+    async init(fresh = false) {
+        await sequelize.authenticate();
+        await sequelize.sync();
+        if (fresh) {
+            await this.deleteAll();
+        }
     }
 
-    findByEmail(email) {
-        return this.getAll().find(user => user.email === email);
+    async getAll() {
+        return await User.findAll();
     }
 
-    create(user) {
-        const users = this.getAll();
-        users.push(user);
-        writeData(users);
-        return user;
+    async findByEmail(email) {
+        return await User.findOne({ where: { email } });
     }
 
-    verify(email, password) {
-        const user = this.findByEmail(email);
+    async create(user) {
+        return await User.create(user);
+    }
+
+    async verify(email, password) {
+        const user = await this.findByEmail(email);
         return user && user.password === password;
     }
+
+    async deleteAll() {
+        return await User.destroy({ where: {}, truncate: true });
+    }
 }
 
-export default new UserModel();
+const SQLiteUserModel = new _SQLiteUserModel();
+export default SQLiteUserModel;

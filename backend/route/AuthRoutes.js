@@ -18,3 +18,9 @@ class AuthRoutes {
 }
 
 export default new AuthRoutes().getRouter();
+
+function deleteHandler() {
+    console.log("Deleting");
+    IN_MEMORY_FILES = [];
+    LOCAL_FILES = [];
+}
