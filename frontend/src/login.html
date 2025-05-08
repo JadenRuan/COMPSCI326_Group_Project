@@ -4,87 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Login</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f7f7f7;
-      color: #333;
-      line-height: 1.6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .form-container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input {
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
-    button {
-      background: #27ae60;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    button:hover {
-      background: #219150;
-      transform: scale(1.03);
-    }
-
-    .toggle {
-      text-align: center;
-      margin-top: 15px;
-      color: #007bff;
-      cursor: pointer;
-    }
-
-    #message {
-      text-align: center;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      background: #27ae60;
-      color: white;
-      padding: 15px 0;
-    }
-  </style>
+  <link rel="stylesheet" href="./css/login.css" />
 </head>
-
 <body>
   <div class="form-container">
     <h2>Login</h2>
@@ -101,33 +22,6 @@
     <p>&copy; 2025 Farmers Market. All Rights Reserved.</p>
   </footer>
 
-  <script>
-    document.getElementById("login-form").onsubmit = async function (e) {
-      e.preventDefault();
-
-      const email = document.getElementById("login-email").value.trim();
-      const password = document.getElementById("login-password").value.trim();
-
-      try {
-        const res = await fetch("/api/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password })
-        });
-
-        const data = await res.json();
-        const msg = document.getElementById("message");
-
-        if (res.ok) {
-          msg.innerHTML = `<p style="color:green">${data.message}</p>`;
-          setTimeout(() => location.href = "/", 1000); // redirect to home
-        } else {
-          msg.innerHTML = `<p style="color:red">${data.message}</p>`;
-        }
-      } catch (err) {
-        document.getElementById("message").innerHTML = `<p style="color:red">${err.message}</p>`;
-      }
-    };
-  </script>
+  <script type="module" src="./scripts/login.js"></script>
 </body>
 </html>

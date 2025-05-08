@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Final submit
   $("registrationForm").onsubmit = async e => {
     e.preventDefault();
+    msg.innerHTML = "";
     try {
       const res = await fetch("/api/register", {
         method: "POST",
